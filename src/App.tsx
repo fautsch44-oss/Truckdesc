@@ -2,10 +2,9 @@ import { useEffect, useMemo, useState } from 'react'
 import type { Category, RepairDescription } from './types'
 import categoriesData from './data/categories.json'
 import { loadDescriptions, saveDescriptions, resetToSeed } from './lib/store'
-import { searchDescriptions } from './lib/search'
-import SearchBar from './components/SearchBar'
-import CategoryFilter from './components/CategoryFilter'
-import DescriptionList from './components/DescriptionList'
+import SearchAutocomplete from './components/SearchAutocomplete'
+import CategoryGrid from './components/CategoryGrid'
+import QuickList from './components/QuickList'
 import Basket from './components/Basket'
 import Toast from './components/Toast'
 import ManageScreen from './components/manage/ManageScreen'
@@ -16,7 +15,6 @@ type View = 'library' | 'manage'
 
 export default function App() {
   const [items, setItems] = useState<RepairDescription[]>(() => loadDescriptions())
-  const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string | null>(null)
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [toast, setToast] = useState<string | null>(null)
@@ -43,12 +41,15 @@ export default function App() {
     return c
   }, [items])
 
-  const filtered = useMemo(
-    () => searchDescriptions(items, query, category),
-    [items, query, category],
-  )
+  // What the compact list shows: the active category, or the most-used repairs
+  // as quick picks when nothing is selected yet.
+  const listItems = useMemo(() => {
+    if (category) return items.filter((i) => i.category === category)
+    return items
+      .filter((i) => (i.frequency ?? 0) > 0)
+      .sort((a, b) => (b.frequency ?? 0) - (a.frequency ?? 0))
+  }, [items, category])
 
-  // Selected items in the order they were added (Set preserves insertion order).
   const selectedItems = useMemo(() => {
     const byId = new Map(items.map((i) => [i.id, i]))
     return [...selectedIds].map((id) => byId.get(id)).filter(Boolean) as RepairDescription[]
@@ -56,7 +57,7 @@ export default function App() {
 
   function showToast(message: string) {
     setToast(message)
-    setTimeout(() => setToast(null), 1800)
+    setTimeout(() => setToast(null), 1600)
   }
 
   function updateItems(next: RepairDescription[]) {
@@ -64,7 +65,17 @@ export default function App() {
     saveDescriptions(next)
   }
 
-  function toggleList(id: string) {
+  function add(id: string) {
+    setSelectedIds((prev) => {
+      if (prev.has(id)) return prev
+      const next = new Set(prev)
+      next.add(id)
+      return next
+    })
+    showToast('Added')
+  }
+
+  function toggle(id: string) {
     setSelectedIds((prev) => {
       const next = new Set(prev)
       next.has(id) ? next.delete(id) : next.add(id)
@@ -108,27 +119,30 @@ export default function App() {
             Manage
           </button>
         </div>
-        <SearchBar value={query} onChange={setQuery} />
+        <SearchAutocomplete items={items} addedIds={selectedIds} onAdd={add} />
       </div>
 
-      <CategoryFilter
+      <CategoryGrid
         categories={categories}
-        selected={category}
         counts={counts}
+        active={category}
         onSelect={setCategory}
       />
 
-      <DescriptionList
-        items={filtered}
-        categoryLabels={categoryLabels}
-        listIds={selectedIds}
-        onToggleList={toggleList}
-        onCopied={() => showToast('Copied to clipboard')}
-      />
+      <div className="section-title">
+        {category ? categoryLabels[category] : '★ Most used'}
+        {category && (
+          <button className="link-btn dark" onClick={() => setCategory(null)}>
+            Clear
+          </button>
+        )}
+      </div>
+
+      <QuickList items={listItems} addedIds={selectedIds} onToggle={toggle} />
 
       <Basket
         items={selectedItems}
-        onRemove={toggleList}
+        onRemove={toggle}
         onClear={() => setSelectedIds(new Set())}
         onToast={showToast}
       />
