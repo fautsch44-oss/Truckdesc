@@ -5,34 +5,23 @@ import CopyButton from './CopyButton'
 interface DescriptionCardProps {
   item: RepairDescription
   categoryLabel: string
-  selectMode: boolean
-  selected: boolean
-  onToggleSelect: (id: string) => void
+  inList: boolean
+  onToggleList: (id: string) => void
   onCopied: () => void
 }
 
 export default function DescriptionCard({
   item,
   categoryLabel,
-  selectMode,
-  selected,
-  onToggleSelect,
+  inList,
+  onToggleList,
   onCopied,
 }: DescriptionCardProps) {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className="card">
+    <div className={`card${inList ? ' card-selected' : ''}`}>
       <div className="card-head">
-        {selectMode && (
-          <input
-            className="card-check"
-            type="checkbox"
-            checked={selected}
-            onChange={() => onToggleSelect(item.id)}
-            aria-label={`Select ${item.title}`}
-          />
-        )}
         <div style={{ flex: 1 }}>
           <h3 className="card-title">{item.title}</h3>
           <span className="badge">{categoryLabel}</span>
@@ -50,7 +39,13 @@ export default function DescriptionCard({
       </p>
 
       <div className="card-actions">
-        <CopyButton text={item.description} onCopied={onCopied} />
+        <button
+          className={`btn ${inList ? 'btn-added' : 'btn-add'}`}
+          onClick={() => onToggleList(item.id)}
+        >
+          {inList ? '✓ Added' : '+ Add'}
+        </button>
+        <CopyButton text={item.description} onCopied={onCopied} label="Copy" />
         <button className="btn btn-ghost" onClick={() => setExpanded((v) => !v)}>
           {expanded ? 'Less' : 'More'}
         </button>

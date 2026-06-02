@@ -4,18 +4,16 @@ import DescriptionCard from './DescriptionCard'
 interface DescriptionListProps {
   items: RepairDescription[]
   categoryLabels: Record<string, string>
-  selectMode: boolean
-  selectedIds: Set<string>
-  onToggleSelect: (id: string) => void
+  listIds: Set<string>
+  onToggleList: (id: string) => void
   onCopied: () => void
 }
 
 export default function DescriptionList({
   items,
   categoryLabels,
-  selectMode,
-  selectedIds,
-  onToggleSelect,
+  listIds,
+  onToggleList,
   onCopied,
 }: DescriptionListProps) {
   if (items.length === 0) {
@@ -29,9 +27,8 @@ export default function DescriptionList({
           key={item.id}
           item={item}
           categoryLabel={categoryLabels[item.category] ?? item.category}
-          selectMode={selectMode}
-          selected={selectedIds.has(item.id)}
-          onToggleSelect={onToggleSelect}
+          inList={listIds.has(item.id)}
+          onToggleList={onToggleList}
           onCopied={onCopied}
         />
       ))}

@@ -3,11 +3,10 @@ import type { Category, RepairDescription } from './types'
 import categoriesData from './data/categories.json'
 import { loadDescriptions, saveDescriptions, resetToSeed } from './lib/store'
 import { searchDescriptions } from './lib/search'
-import { copyText } from './lib/clipboard'
 import SearchBar from './components/SearchBar'
 import CategoryFilter from './components/CategoryFilter'
 import DescriptionList from './components/DescriptionList'
-import SelectionBar from './components/SelectionBar'
+import Basket from './components/Basket'
 import Toast from './components/Toast'
 import ManageScreen from './components/manage/ManageScreen'
 
@@ -19,7 +18,6 @@ export default function App() {
   const [items, setItems] = useState<RepairDescription[]>(() => loadDescriptions())
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<string | null>(null)
-  const [selectMode, setSelectMode] = useState(false)
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
   const [toast, setToast] = useState<string | null>(null)
   const [view, setView] = useState<View>(
@@ -50,6 +48,12 @@ export default function App() {
     [items, query, category],
   )
 
+  // Selected items in the order they were added (Set preserves insertion order).
+  const selectedItems = useMemo(() => {
+    const byId = new Map(items.map((i) => [i.id, i]))
+    return [...selectedIds].map((id) => byId.get(id)).filter(Boolean) as RepairDescription[]
+  }, [selectedIds, items])
+
   function showToast(message: string) {
     setToast(message)
     setTimeout(() => setToast(null), 1800)
@@ -60,25 +64,12 @@ export default function App() {
     saveDescriptions(next)
   }
 
-  function toggleSelect(id: string) {
+  function toggleList(id: string) {
     setSelectedIds((prev) => {
       const next = new Set(prev)
       next.has(id) ? next.delete(id) : next.add(id)
       return next
     })
-  }
-
-  async function copySelected() {
-    const text = items
-      .filter((i) => selectedIds.has(i.id))
-      .map((i) => i.description)
-      .join('\n')
-    const ok = await copyText(text)
-    if (ok) {
-      showToast(`Copied ${selectedIds.size} descriptions`)
-      setSelectedIds(new Set())
-      setSelectMode(false)
-    }
   }
 
   function navigate(v: View) {
@@ -113,20 +104,9 @@ export default function App() {
       <div className="topbar">
         <div className="topbar-row">
           <h1>Truck Repair Descriptions</h1>
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button
-              className="nav-btn"
-              onClick={() => {
-                setSelectMode((v) => !v)
-                setSelectedIds(new Set())
-              }}
-            >
-              {selectMode ? 'Done' : 'Select'}
-            </button>
-            <button className="nav-btn" onClick={() => navigate('manage')}>
-              Manage
-            </button>
-          </div>
+          <button className="nav-btn" onClick={() => navigate('manage')}>
+            Manage
+          </button>
         </div>
         <SearchBar value={query} onChange={setQuery} />
       </div>
@@ -141,19 +121,17 @@ export default function App() {
       <DescriptionList
         items={filtered}
         categoryLabels={categoryLabels}
-        selectMode={selectMode}
-        selectedIds={selectedIds}
-        onToggleSelect={toggleSelect}
+        listIds={selectedIds}
+        onToggleList={toggleList}
         onCopied={() => showToast('Copied to clipboard')}
       />
 
-      {selectMode && (
-        <SelectionBar
-          count={selectedIds.size}
-          onCopy={copySelected}
-          onClear={() => setSelectedIds(new Set())}
-        />
-      )}
+      <Basket
+        items={selectedItems}
+        onRemove={toggleList}
+        onClear={() => setSelectedIds(new Set())}
+        onToast={showToast}
+      />
 
       <Toast message={toast} />
     </div>
