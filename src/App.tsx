@@ -134,7 +134,7 @@ export default function App() {
             <h1>Truckdesc</h1>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button className="nav-btn" onClick={() => setShowAdd(true)}>
+            <button className="nav-btn nav-btn-accent" onClick={() => setShowAdd(true)}>
               + Add
             </button>
             <button className="nav-btn" onClick={() => navigate('manage')}>
