@@ -36,6 +36,9 @@ export default function DescriptionCard({
         <div style={{ flex: 1 }}>
           <h3 className="card-title">{item.title}</h3>
           <span className="badge">{categoryLabel}</span>
+          {item.frequency ? (
+            <span className="badge badge-freq">★ used {item.frequency}×</span>
+          ) : null}
         </div>
       </div>
 

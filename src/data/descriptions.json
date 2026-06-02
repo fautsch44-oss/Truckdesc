@@ -1,352 +1,1101 @@
 [
   {
-    "id": "brakes-replace-brake-chamber",
+    "id": "abs-traction-control-fix-electric-problem-to-abs-module",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Abs Module",
+    "description": "FIX ELECTRIC PROBLEM TO ABS MODULE",
+    "frequency": 6
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-abs-module-power-supply",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Abs Module Power Supply",
+    "description": "FIX ELECTRIC PROBLEM TO ABS MODULE POWER SUPPLY",
+    "frequency": 2
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-rear-axle-abs-speed",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Rear Axle Abs Speed",
+    "description": "FIX ELECTRIC PROBLEM TO REAR AXLE ABS SPEED",
+    "frequency": 2
+  },
+  {
+    "id": "abs-traction-control-abs-enfrente-y-atras-lado-derecho",
+    "category": "abs-traction-control",
+    "title": "Abs Enfrente y Atras Lado Derecho",
+    "description": "ABS ENFRENTE Y ATRAS LADO DERECHO",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-calibrate-steer-angle-sensor-and-stability-control",
+    "category": "abs-traction-control",
+    "title": "Calibrate Steer Angle Sensor and Stability Control",
+    "description": "CALIBRATE STEER ANGLE SENSOR AND STABILITY CONTROL",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-rear-axle-short-to-ground",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem Rear Axle Short to Ground",
+    "description": "FIX ELECTRIC PROBLEM REAR AXLE SHORT TO GROUND",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-abs-module-main-supply",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Abs Module Main Supply",
+    "description": "FIX ELECTRIC PROBLEM TO ABS MODULE MAIN SUPPLY",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-front-axle-abs-speed",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Front Axle Abs Speed",
+    "description": "FIX ELECTRIC PROBLEM TO FRONT AXLE ABS SPEED",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-rear-axle-abs-valve",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Rear Axle Abs Valve",
+    "description": "FIX ELECTRIC PROBLEM TO REAR AXLE ABS VALVE",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-fix-open-circuit-front-axle-abs-valve",
+    "category": "abs-traction-control",
+    "title": "Fix Open Circuit Front Axle Abs Valve",
+    "description": "FIX OPEN CIRCUIT FRONT AXLE ABS VALVE",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-remove-3-rear-axle-tires-to-fix-abs-problem",
+    "category": "abs-traction-control",
+    "title": "Remove 3 Rear Axle Tires to Fix Abs Problem",
+    "description": "REMOVE 3 REAR AXLE TIRES TO FIX ABS PROBLEM",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-replace-atr6-bendix-traction-control-valve",
+    "category": "abs-traction-control",
+    "title": "Replace ATR6 Bendix Traction Control Valve",
+    "description": "REPLACE ATR6 BENDIX TRACTION CONTROL VALVE",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-replace-abs-module-bad-condition",
+    "category": "abs-traction-control",
+    "title": "Replace Abs Module Bad Condition",
+    "description": "REPLACE ABS MODULE BAD CONDITION",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-replace-rear-right-abs-sensor-and-calibrate",
+    "category": "abs-traction-control",
+    "title": "Replace Rear Right Abs Sensor and Calibrate",
+    "description": "REPLACE REAR RIGHT ABS SENSOR AND CALIBRATE",
+    "frequency": 1
+  },
+  {
+    "id": "abs-traction-control-4s-4m-bendix-module-reprog-and-adjust",
+    "category": "abs-traction-control",
+    "title": "4S/4M Bendix Module Reprog and Adjust",
+    "description": "4S/4M BENDIX MODULE REPROG AND ADJUST"
+  },
+  {
+    "id": "abs-traction-control-abs-daycab-diagnostic",
+    "category": "abs-traction-control",
+    "title": "Abs Daycab Diagnostic",
+    "description": "ABS DAYCAB DIAGNOSTIC"
+  },
+  {
+    "id": "abs-traction-control-abs-diagnostic-and-repair",
+    "category": "abs-traction-control",
+    "title": "Abs Diagnostic and Repair",
+    "description": "ABS DIAGNOSTIC AND REPAIR"
+  },
+  {
+    "id": "abs-traction-control-abs-fault-codes-diagnostic",
+    "category": "abs-traction-control",
+    "title": "Abs Fault Codes Diagnostic",
+    "description": "ABS FAULT CODES DIAGNOSTIC"
+  },
+  {
+    "id": "abs-traction-control-abs-front-axle-repair",
+    "category": "abs-traction-control",
+    "title": "Abs Front Axle Repair",
+    "description": "ABS FRONT AXLE REPAIR"
+  },
+  {
+    "id": "abs-traction-control-abs-harnnes-repair",
+    "category": "abs-traction-control",
+    "title": "Abs Harnnes Repair",
+    "description": "ABS HARNNES REPAIR"
+  },
+  {
+    "id": "abs-traction-control-abs-module-replacement-and-calibrate",
+    "category": "abs-traction-control",
+    "title": "Abs Module Replacement and Calibrate",
+    "description": "ABS MODULE REPLACEMENT AND CALIBRATE"
+  },
+  {
+    "id": "abs-traction-control-abs-rear-axle-left-side-repair",
+    "category": "abs-traction-control",
+    "title": "Abs Rear Axle Left Side Repair",
+    "description": "ABS REAR AXLE LEFT SIDE REPAIR"
+  },
+  {
+    "id": "abs-traction-control-abs-rear-axle-right-side-repair",
+    "category": "abs-traction-control",
+    "title": "Abs Rear Axle Right Side Repair",
+    "description": "ABS REAR AXLE RIGHT SIDE REPAIR"
+  },
+  {
+    "id": "abs-traction-control-abs-sensor-replacement-and-calibrate",
+    "category": "abs-traction-control",
+    "title": "Abs Sensor Replacement and Calibrate",
+    "description": "ABS SENSOR REPLACEMENT AND CALIBRATE"
+  },
+  {
+    "id": "abs-traction-control-abs-speed-sensor-replacement",
+    "category": "abs-traction-control",
+    "title": "Abs Speed Sensor Replacement",
+    "description": "ABS SPEED SENSOR REPLACEMENT"
+  },
+  {
+    "id": "abs-traction-control-abs-tone-ring-replacement",
+    "category": "abs-traction-control",
+    "title": "Abs Tone Ring Replacement",
+    "description": "ABS TONE RING REPLACEMENT"
+  },
+  {
+    "id": "abs-traction-control-abs-trailer-diagnostic",
+    "category": "abs-traction-control",
+    "title": "Abs Trailer Diagnostic",
+    "description": "ABS TRAILER DIAGNOSTIC"
+  },
+  {
+    "id": "abs-traction-control-abs-valve-replacement",
+    "category": "abs-traction-control",
+    "title": "Abs Valve Replacement",
+    "description": "ABS VALVE REPLACEMENT"
+  },
+  {
+    "id": "abs-traction-control-adjust-parameters-to-acm",
+    "category": "abs-traction-control",
+    "title": "Adjust Parameters to Acm",
+    "description": "ADJUST PARAMETERS TO ACM"
+  },
+  {
+    "id": "abs-traction-control-calibrate-stability-control-system",
+    "category": "abs-traction-control",
+    "title": "Calibrate Stability Control System",
+    "description": "CALIBRATE STABILITY CONTROL SYSTEM"
+  },
+  {
+    "id": "abs-traction-control-diag-abs-fault-codes",
+    "category": "abs-traction-control",
+    "title": "Diag Abs Fault Codes",
+    "description": "DIAG ABS FAULT CODES"
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-abs-rear-axle",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem Abs Rear Axle",
+    "description": "FIX ELECTRIC PROBLEM ABS REAR AXLE"
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-air-brake-pressure-switch",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Air Brake Pressure Switch",
+    "description": "FIX ELECTRIC PROBLEM TO AIR BRAKE PRESSURE SWITCH"
+  },
+  {
+    "id": "abs-traction-control-fix-electric-problem-to-rear-axle-abs-harnnes",
+    "category": "abs-traction-control",
+    "title": "Fix Electric Problem to Rear Axle Abs Harnnes",
+    "description": "FIX ELECTRIC PROBLEM TO REAR AXLE ABS HARNNES"
+  },
+  {
+    "id": "abs-traction-control-fix-open-circuit-to-traction-control-valve",
+    "category": "abs-traction-control",
+    "title": "Fix Open Circuit to Traction Control Valve",
+    "description": "FIX OPEN CIRCUIT TO TRACTION CONTROL VALVE"
+  },
+  {
+    "id": "abs-traction-control-remove-front-axle-left-side-tire-to-replace-abs",
+    "category": "abs-traction-control",
+    "title": "Remove Front Axle Left Side Tire to Replace Abs",
+    "description": "REMOVE FRONT AXLE LEFT SIDE TIRE TO REPLACE ABS"
+  },
+  {
+    "id": "abs-traction-control-remove-front-and-rear-traction-control-valve",
+    "category": "abs-traction-control",
+    "title": "Remove Front and Rear Traction Control Valve",
+    "description": "REMOVE FRONT AND REAR TRACTION CONTROL VALVE"
+  },
+  {
+    "id": "abs-traction-control-remove-rear-left-tires-to-clean-abs-tone-ring",
+    "category": "abs-traction-control",
+    "title": "Remove Rear Left Tires to Clean Abs Tone Ring",
+    "description": "REMOVE REAR LEFT TIRES TO CLEAN ABS TONE RING"
+  },
+  {
+    "id": "abs-traction-control-remove-rear-left-tires-to-replace-abs-sensor",
+    "category": "abs-traction-control",
+    "title": "Remove Rear Left Tires to Replace Abs Sensor",
+    "description": "REMOVE REAR LEFT TIRES TO REPLACE ABS SENSOR"
+  },
+  {
+    "id": "abs-traction-control-remove-rear-right-hub-to-replace-abs-tone-ring",
+    "category": "abs-traction-control",
+    "title": "Remove Rear Right Hub to Replace Abs Tone Ring",
+    "description": "REMOVE REAR RIGHT HUB TO REPLACE ABS TONE RING"
+  },
+  {
+    "id": "abs-traction-control-remove-rear-right-tires-to-replace-abs-sensor",
+    "category": "abs-traction-control",
+    "title": "Remove Rear Right Tires to Replace Abs Sensor",
+    "description": "REMOVE REAR RIGHT TIRES TO REPLACE ABS SENSOR"
+  },
+  {
+    "id": "abs-traction-control-replace-front-axle-abs-sensors-and-calibrate",
+    "category": "abs-traction-control",
+    "title": "Replace Front Axle Abs Sensors and Calibrate",
+    "description": "REPLACE FRONT AXLE ABS SENSORS AND CALIBRATE"
+  },
+  {
+    "id": "abs-traction-control-replace-service-brake-switch",
+    "category": "abs-traction-control",
+    "title": "Replace Service Brake Switch",
+    "description": "REPLACE SERVICE BRAKE SWITCH"
+  },
+  {
+    "id": "engine-motor-adjust-intake-and-exhaust-engine-valves",
+    "category": "engine-motor",
+    "title": "Adjust Intake and Exhaust Engine Valves",
+    "description": "ADJUST INTAKE AND EXHAUST ENGINE VALVES",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-calibrar-motor",
+    "category": "engine-motor",
+    "title": "Calibrar Motor",
+    "description": "CALIBRAR MOTOR",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-conversion-motor",
+    "category": "engine-motor",
+    "title": "Conversion Motor",
+    "description": "CONVERSION MOTOR",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-fix-engine-parameters",
+    "category": "engine-motor",
+    "title": "Fix Engine Parameters",
+    "description": "FIX ENGINE PARAMETERS",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-inyector-usado-cummins",
+    "category": "engine-motor",
+    "title": "Inyector Usado Cummins",
+    "description": "INYECTOR USADO CUMMINS",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-qcv-cambio",
+    "category": "engine-motor",
+    "title": "Qcv Cambio",
+    "description": "QCV CAMBIO",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-replace-turbo-charger-bad-condition",
+    "category": "engine-motor",
+    "title": "Replace Turbo Charger Bad Condition",
+    "description": "REPLACE TURBO CHARGER BAD CONDITION",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-valvula-de-pie-servicio",
+    "category": "engine-motor",
+    "title": "Valvula de Pie Servicio",
+    "description": "VALVULA DE PIE SERVICIO",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-vgt-install",
+    "category": "engine-motor",
+    "title": "Vgt Install",
+    "description": "VGT INSTALL",
+    "frequency": 1
+  },
+  {
+    "id": "engine-motor-cambio-inyector",
+    "category": "engine-motor",
+    "title": "Cambio Inyector",
+    "description": "CAMBIO INYECTOR"
+  },
+  {
+    "id": "engine-motor-cluster-replacement",
+    "category": "engine-motor",
+    "title": "Cluster Replacement",
+    "description": "CLUSTER REPLACEMENT"
+  },
+  {
+    "id": "engine-motor-diag-enge-fault-codes",
+    "category": "engine-motor",
+    "title": "Diag Enge Fault Codes",
+    "description": "DIAG ENGE FAULT CODES"
+  },
+  {
+    "id": "engine-motor-fix-engine-harness-electric-problem",
+    "category": "engine-motor",
+    "title": "Fix Engine Harness Electric Problem",
+    "description": "FIX ENGINE HARNESS ELECTRIC PROBLEM"
+  },
+  {
+    "id": "engine-motor-fix-short-to-ground-j1939-data-link",
+    "category": "engine-motor",
+    "title": "Fix Short to Ground J1939 Data Link",
+    "description": "FIX SHORT TO GROUND J1939 DATA LINK"
+  },
+  {
+    "id": "engine-motor-inyectores-y-qcv-replacement",
+    "category": "engine-motor",
+    "title": "Inyectores y Qcv Replacement",
+    "description": "INYECTORES Y QCV REPLACEMENT"
+  },
+  {
+    "id": "engine-motor-j1939-data-link-problem",
+    "category": "engine-motor",
+    "title": "J1939 Data Link Problem",
+    "description": "J1939 DATA LINK PROBLEM"
+  },
+  {
+    "id": "engine-motor-jake-brake-and-harness-repair",
+    "category": "engine-motor",
+    "title": "Jake Brake and Harness Repair",
+    "description": "JAKE BRAKE AND HARNESS REPAIR"
+  },
+  {
+    "id": "engine-motor-oil-duct-manifold-replacement",
+    "category": "engine-motor",
+    "title": "Oil Duct Manifold Replacement",
+    "description": "OIL DUCT MANIFOLD REPLACEMENT"
+  },
+  {
+    "id": "engine-motor-oil-suction-and-oil-pump-replacement",
+    "category": "engine-motor",
+    "title": "Oil Suction and Oil Pump Replacement",
+    "description": "OIL SUCTION AND OIL PUMP REPLACEMENT"
+  },
+  {
+    "id": "engine-motor-overhaul-engine",
+    "category": "engine-motor",
+    "title": "Overhaul Engine",
+    "description": "OVERHAUL ENGINE"
+  },
+  {
+    "id": "engine-motor-overhaul-paccar-engine-mx11",
+    "category": "engine-motor",
+    "title": "Overhaul Paccar Engine MX11",
+    "description": "OVERHAUL PACCAR ENGINE MX11"
+  },
+  {
+    "id": "engine-motor-relief-valve-replacement",
+    "category": "engine-motor",
+    "title": "Relief Valve Replacement",
+    "description": "RELIEF VALVE REPLACEMENT"
+  },
+  {
+    "id": "engine-motor-remove-oil-pan-to-replace-oil-pump-and-suction",
+    "category": "engine-motor",
+    "title": "Remove Oil Pan to Replace Oil Pump and Suction",
+    "description": "REMOVE OIL PAN TO REPLACE OIL PUMP AND SUCTION"
+  },
+  {
+    "id": "engine-motor-replace-cylinder-head-rear-cap",
+    "category": "engine-motor",
+    "title": "Replace Cylinder Head Rear Cap",
+    "description": "REPLACE CYLINDER HEAD REAR CAP"
+  },
+  {
+    "id": "engine-motor-sensor-replacement-speed-boost-cam-position",
+    "category": "engine-motor",
+    "title": "Sensor Replacement (SPEED/BOOST/CAM POSITION)",
+    "description": "SENSOR REPLACEMENT (SPEED/BOOST/CAM POSITION)"
+  },
+  {
+    "id": "engine-motor-wif-protection-sensor",
+    "category": "engine-motor",
+    "title": "Wif Protection Sensor",
+    "description": "WIF PROTECTION SENSOR"
+  },
+  {
+    "id": "transmission-clutch-remove-transmission-to-replace",
+    "category": "transmission-clutch",
+    "title": "Remove Transmission to Replace",
+    "description": "REMOVE TRANSMISSION TO REPLACE",
+    "frequency": 3
+  },
+  {
+    "id": "transmission-clutch-cambio-de-clutch",
+    "category": "transmission-clutch",
+    "title": "Cambio de Clutch",
+    "description": "CAMBIO DE CLUTCH",
+    "frequency": 1
+  },
+  {
+    "id": "transmission-clutch-clutch-soportes-motor-cpc",
+    "category": "transmission-clutch",
+    "title": "Clutch Soportes Motor Cpc",
+    "description": "CLUTCH SOPORTES MOTOR CPC",
+    "frequency": 1
+  },
+  {
+    "id": "transmission-clutch-remove-transmission-auxiliar-gear-box",
+    "category": "transmission-clutch",
+    "title": "Remove Transmission Auxiliar Gear Box",
+    "description": "REMOVE TRANSMISSION AUXILIAR GEAR BOX",
+    "frequency": 1
+  },
+  {
+    "id": "transmission-clutch-remove-transmission-fuller-endurant",
+    "category": "transmission-clutch",
+    "title": "Remove Transmission Fuller Endurant",
+    "description": "REMOVE TRANSMISSION FULLER ENDURANT",
+    "frequency": 1
+  },
+  {
+    "id": "transmission-clutch-remove-transmission-to-change-mtm-air-seals",
+    "category": "transmission-clutch",
+    "title": "Remove Transmission to Change Mtm Air Seals",
+    "description": "REMOVE TRANSMISSION TO CHANGE MTM AIR SEALS",
+    "frequency": 1
+  },
+  {
+    "id": "transmission-clutch-replace-xy-shifter-out-of-range",
+    "category": "transmission-clutch",
+    "title": "Replace Xy Shifter Out of Range",
+    "description": "REPLACE XY SHIFTER OUT OF RANGE",
+    "frequency": 1
+  },
+  {
+    "id": "transmission-clutch-allison-transmission-repair",
+    "category": "transmission-clutch",
+    "title": "Allison Transmission Repair",
+    "description": "ALLISON TRANSMISSION REPAIR"
+  },
+  {
+    "id": "transmission-clutch-clutch-assembly-replacement",
+    "category": "transmission-clutch",
+    "title": "Clutch Assembly Replacement",
+    "description": "CLUTCH ASSEMBLY REPLACEMENT"
+  },
+  {
+    "id": "transmission-clutch-clutch-eaton-replacement",
+    "category": "transmission-clutch",
+    "title": "Clutch Eaton Replacement",
+    "description": "CLUTCH EATON REPLACEMENT"
+  },
+  {
+    "id": "transmission-clutch-clutch-and-actuator-replacement",
+    "category": "transmission-clutch",
+    "title": "Clutch and Actuator Replacement",
+    "description": "CLUTCH AND ACTUATOR REPLACEMENT"
+  },
+  {
+    "id": "transmission-clutch-daycab-allison-repair",
+    "category": "transmission-clutch",
+    "title": "Daycab Allison Repair",
+    "description": "DAYCAB ALLISON REPAIR"
+  },
+  {
+    "id": "transmission-clutch-install-clutch-switch-and-harness",
+    "category": "transmission-clutch",
+    "title": "Install Clutch Switch and Harness",
+    "description": "INSTALL CLUTCH SWITCH AND HARNESS"
+  },
+  {
+    "id": "transmission-clutch-motor-gear-transmission-dt12",
+    "category": "transmission-clutch",
+    "title": "Motor Gear Transmission DT12",
+    "description": "MOTOR GEAR TRANSMISSION DT12"
+  },
+  {
+    "id": "transmission-clutch-remove-flywheel-to-replace-rear-seal",
+    "category": "transmission-clutch",
+    "title": "Remove Flywheel to Replace Rear Seal",
+    "description": "REMOVE FLYWHEEL TO REPLACE REAR SEAL"
+  },
+  {
+    "id": "transmission-clutch-remove-transmission-to-replace-clutch-assy",
+    "category": "transmission-clutch",
+    "title": "Remove Transmission to Replace Clutch Assy",
+    "description": "REMOVE TRANSMISSION TO REPLACE CLUTCH ASSY"
+  },
+  {
+    "id": "transmission-clutch-transmision-endurant-repair",
+    "category": "transmission-clutch",
+    "title": "Transmision Endurant Repair",
+    "description": "TRANSMISION ENDURANT REPAIR"
+  },
+  {
+    "id": "transmission-clutch-transmission-fallo-fuga-aire",
+    "category": "transmission-clutch",
+    "title": "Transmission Fallo Fuga Aire",
+    "description": "TRANSMISSION FALLO FUGA AIRE"
+  },
+  {
+    "id": "transmission-clutch-transmission-shifter-repair",
+    "category": "transmission-clutch",
+    "title": "Transmission Shifter Repair",
+    "description": "TRANSMISSION SHIFTER REPAIR"
+  },
+  {
+    "id": "transmission-clutch-update-to-eaton-fuller-transmission",
+    "category": "transmission-clutch",
+    "title": "Update to Eaton Fuller Transmission",
+    "description": "UPDATE TO EATON FULLER TRANSMISSION"
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-to-ecm-main-supply-low",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem to Ecm Main Supply Low",
+    "description": "FIX ELECTRIC PROBLEM TO ECM MAIN SUPPLY LOW",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-to-vehicle-speed-sensor",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem to Vehicle Speed Sensor",
+    "description": "FIX ELECTRIC PROBLEM TO VEHICLE SPEED SENSOR",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-to-yaw-rate-sensor",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem to Yaw Rate Sensor",
+    "description": "FIX ELECTRIC PROBLEM TO YAW RATE SENSOR",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-flash-cat-ecm",
+    "category": "electrical-wiring",
+    "title": "Flash Cat Ecm",
+    "description": "FLASH CAT ECM",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-install-electronic-bpv-arm",
+    "category": "electrical-wiring",
+    "title": "Install Electronic Bpv Arm",
+    "description": "INSTALL ELECTRONIC BPV ARM",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-radar-change-part",
+    "category": "electrical-wiring",
+    "title": "Radar Change Part",
+    "description": "RADAR CHANGE PART",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-reprogramming-service-ranger-software",
+    "category": "electrical-wiring",
+    "title": "Reprogramming Service Ranger Software",
+    "description": "REPROGRAMMING SERVICE RANGER SOFTWARE",
+    "frequency": 1
+  },
+  {
+    "id": "electrical-wiring-5-volts-low-diagnostic",
+    "category": "electrical-wiring",
+    "title": "5 Volts Low Diagnostic",
+    "description": "5 VOLTS LOW DIAGNOSTIC"
+  },
+  {
+    "id": "electrical-wiring-acm-cables-repair",
+    "category": "electrical-wiring",
+    "title": "Acm Cables Repair",
+    "description": "ACM CABLES REPAIR"
+  },
+  {
+    "id": "electrical-wiring-acm-corto-short-repair",
+    "category": "electrical-wiring",
+    "title": "Acm Corto / Short Repair",
+    "description": "ACM CORTO / SHORT REPAIR"
+  },
+  {
+    "id": "electrical-wiring-cableado-wiring-repair",
+    "category": "electrical-wiring",
+    "title": "Cableado / Wiring Repair",
+    "description": "CABLEADO / WIRING REPAIR"
+  },
+  {
+    "id": "electrical-wiring-clockspring-steering-column-replacement",
+    "category": "electrical-wiring",
+    "title": "Clockspring Steering Column Replacement",
+    "description": "CLOCKSPRING STEERING COLUMN REPLACEMENT"
+  },
+  {
+    "id": "electrical-wiring-cpc-cabina-repair",
+    "category": "electrical-wiring",
+    "title": "Cpc Cabina Repair",
+    "description": "CPC CABINA REPAIR"
+  },
+  {
+    "id": "electrical-wiring-cpc-reprogramming",
+    "category": "electrical-wiring",
+    "title": "Cpc Reprogramming",
+    "description": "CPC REPROGRAMMING"
+  },
+  {
+    "id": "electrical-wiring-cpc-y-transmission-programming",
+    "category": "electrical-wiring",
+    "title": "Cpc y Transmission Programming",
+    "description": "CPC Y TRANSMISSION PROGRAMMING"
+  },
+  {
+    "id": "electrical-wiring-ecm-electric-problem",
+    "category": "electrical-wiring",
+    "title": "Ecm Electric Problem",
+    "description": "ECM ELECTRIC PROBLEM"
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-power-supply",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem Power Supply",
+    "description": "FIX ELECTRIC PROBLEM POWER SUPPLY"
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-and-harness",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem and Harness",
+    "description": "FIX ELECTRIC PROBLEM AND HARNESS"
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-to-brake-pressure-switch",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem to Brake Pressure Switch",
+    "description": "FIX ELECTRIC PROBLEM TO BRAKE PRESSURE SWITCH"
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-to-coolant-level-sensor",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem to Coolant Level Sensor",
+    "description": "FIX ELECTRIC PROBLEM TO COOLANT LEVEL SENSOR"
+  },
+  {
+    "id": "electrical-wiring-fix-electric-problem-to-engine-harness-short",
+    "category": "electrical-wiring",
+    "title": "Fix Electric Problem to Engine Harness Short",
+    "description": "FIX ELECTRIC PROBLEM TO ENGINE HARNESS SHORT"
+  },
+  {
+    "id": "electrical-wiring-replace-cabin-module-and-replace-trans-module",
+    "category": "electrical-wiring",
+    "title": "Replace Cabin Module and Replace Trans Module",
+    "description": "REPLACE CABIN MODULE AND REPLACE TRANS MODULE"
+  },
+  {
+    "id": "electrical-wiring-replace-ddec-vii-mcm-and-reprogram",
+    "category": "electrical-wiring",
+    "title": "Replace Ddec Vii Mcm and Reprogram",
+    "description": "REPLACE DDEC VII MCM AND REPROGRAM"
+  },
+  {
+    "id": "dpf-egr-emissions-arreglar-dpf",
+    "category": "dpf-egr-emissions",
+    "title": "Arreglar Dpf",
+    "description": "ARREGLAR DPF",
+    "frequency": 2
+  },
+  {
+    "id": "dpf-egr-emissions-adjust-parameters-dpf-and-scr-ddec-15-detroit",
+    "category": "dpf-egr-emissions",
+    "title": "Adjust Parameters Dpf and Scr Ddec 15 Detroit",
+    "description": "ADJUST PARAMETERS DPF AND SCR DDEC 15 DETROIT",
+    "frequency": 1
+  },
+  {
+    "id": "dpf-egr-emissions-dpf-oil-change",
+    "category": "dpf-egr-emissions",
+    "title": "Dpf Oil Change",
+    "description": "DPF OIL CHANGE",
+    "frequency": 1
+  },
+  {
+    "id": "dpf-egr-emissions-replace-crankcase-breather",
+    "category": "dpf-egr-emissions",
+    "title": "Replace Crankcase Breather",
+    "description": "REPLACE CRANKCASE BREATHER",
+    "frequency": 1
+  },
+  {
+    "id": "dpf-egr-emissions-replace-def-metering-unit-bad-condition",
+    "category": "dpf-egr-emissions",
+    "title": "Replace Def Metering Unit Bad Condition",
+    "description": "REPLACE DEF METERING UNIT BAD CONDITION",
+    "frequency": 1
+  },
+  {
+    "id": "dpf-egr-emissions-replaced-inlet-nox-sensor-bad",
+    "category": "dpf-egr-emissions",
+    "title": "Replaced Inlet Nox Sensor Bad",
+    "description": "REPLACED INLET NOX SENSOR BAD",
+    "frequency": 1
+  },
+  {
+    "id": "dpf-egr-emissions-crankcase-filter-cascadia",
+    "category": "dpf-egr-emissions",
+    "title": "Crankcase Filter Cascadia",
+    "description": "CRANKCASE FILTER CASCADIA"
+  },
+  {
+    "id": "dpf-egr-emissions-daycab-def-level-device",
+    "category": "dpf-egr-emissions",
+    "title": "Daycab Def Level Device",
+    "description": "DAYCAB DEF LEVEL DEVICE"
+  },
+  {
+    "id": "dpf-egr-emissions-egr-hose-replacement",
+    "category": "dpf-egr-emissions",
+    "title": "Egr Hose Replacement",
+    "description": "EGR HOSE REPLACEMENT"
+  },
+  {
+    "id": "dpf-egr-emissions-egr-pipe-and-hose-repair",
+    "category": "dpf-egr-emissions",
+    "title": "Egr Pipe and Hose Repair",
+    "description": "EGR PIPE AND HOSE REPAIR"
+  },
+  {
+    "id": "dpf-egr-emissions-egr-sensor-replacement",
+    "category": "dpf-egr-emissions",
+    "title": "Egr Sensor Replacement",
+    "description": "EGR SENSOR REPLACEMENT"
+  },
+  {
+    "id": "dpf-egr-emissions-regen-service",
+    "category": "dpf-egr-emissions",
+    "title": "Regen Service",
+    "description": "REGEN SERVICE"
+  },
+  {
+    "id": "dpf-egr-emissions-replace-def-pump",
+    "category": "dpf-egr-emissions",
+    "title": "Replace Def Pump",
+    "description": "REPLACE DEF PUMP"
+  },
+  {
+    "id": "dpf-egr-emissions-replace-exhaust-gas-pressure-sensor",
+    "category": "dpf-egr-emissions",
+    "title": "Replace Exhaust Gas Pressure Sensor",
+    "description": "REPLACE EXHAUST GAS PRESSURE SENSOR"
+  },
+  {
+    "id": "dpf-egr-emissions-welding-work-egr-pipe-and-diagnostic",
+    "category": "dpf-egr-emissions",
+    "title": "Welding Work Egr Pipe and Diagnostic",
+    "description": "WELDING WORK EGR PIPE AND DIAGNOSTIC"
+  },
+  {
+    "id": "brakes-brake-pedal-valve-device-and-calibration",
     "category": "brakes",
-    "title": "Replace brake chamber",
-    "description": "Removed and replaced defective brake chamber. Inspected slack adjuster and pushrod travel, adjusted brakes to specification, and tested for air leaks. Verified proper brake application and release.",
-    "keywords": ["air chamber", "diaphragm", "spring brake"]
+    "title": "Brake Pedal Valve Device and Calibration",
+    "description": "BRAKE PEDAL VALVE DEVICE AND CALIBRATION",
+    "frequency": 1
   },
   {
-    "id": "brakes-reline-shoes",
+    "id": "brakes-install-trailer-brake-valve-in-cabin",
     "category": "brakes",
-    "title": "Replace brake shoes and linings",
-    "description": "Replaced worn brake shoes and linings on axle. Cleaned and inspected drums, replaced hardware kit, lubricated cam shaft and S-cam bushings, and adjusted brakes to proper clearance. Road tested for correct operation.",
-    "keywords": ["reline", "lining", "drum brake"]
+    "title": "Install Trailer Brake Valve In Cabin",
+    "description": "INSTALL TRAILER BRAKE VALVE IN CABIN",
+    "frequency": 1
   },
   {
-    "id": "brakes-replace-drum",
+    "id": "brakes-replace-brake-demand-pressure-sensors",
     "category": "brakes",
-    "title": "Replace brake drum",
-    "description": "Removed and replaced cracked/worn brake drum. Inspected bearings and seals, repacked wheel bearings, installed new seal, and adjusted brakes. Verified torque on wheel fasteners to manufacturer specification.",
-    "keywords": ["drum", "wheel hub"]
+    "title": "Replace Brake Demand Pressure Sensors",
+    "description": "REPLACE BRAKE DEMAND PRESSURE SENSORS",
+    "frequency": 1
   },
   {
-    "id": "brakes-replace-slack-adjuster",
+    "id": "brakes-chamber-and-quick-valve-replacement",
     "category": "brakes",
-    "title": "Replace automatic slack adjuster",
-    "description": "Replaced failed automatic slack adjuster. Greased and verified free movement, set proper installation angle, and adjusted pushrod stroke to specification. Tested brake application for correct self-adjustment.",
-    "keywords": ["slack", "adjuster", "asa"]
+    "title": "Chamber and Quick Valve Replacement",
+    "description": "CHAMBER AND QUICK VALVE REPLACEMENT"
   },
   {
-    "id": "brakes-replace-abs-sensor",
+    "id": "brakes-replace-air-brake-compressor-and-coolant",
     "category": "brakes",
-    "title": "Replace ABS wheel speed sensor",
-    "description": "Diagnosed ABS fault and replaced defective wheel speed sensor and clip. Cleaned sensor bore, applied anti-seize, cleared fault codes, and confirmed ABS lamp operation and signal output.",
-    "keywords": ["abs", "sensor", "wheel speed", "ecu"]
+    "title": "Replace Air Brake Compressor and Coolant",
+    "description": "REPLACE AIR BRAKE COMPRESSOR AND COOLANT"
   },
   {
-    "id": "brakes-grease-seal-replacement",
+    "id": "brakes-replace-park-brake-switch-bad-condition",
     "category": "brakes",
-    "title": "Replace leaking wheel seal",
-    "description": "Replaced leaking hub wheel seal contaminating brake linings. Cleaned hub and spindle, repacked bearings with grease, installed new seal, and adjusted brakes. Verified no further leakage.",
-    "keywords": ["seal", "grease", "hub", "leak"]
+    "title": "Replace Park Brake Switch Bad Condition",
+    "description": "REPLACE PARK BRAKE SWITCH BAD CONDITION"
   },
   {
-    "id": "suspension-replace-air-bag",
-    "category": "suspension",
-    "title": "Replace air spring (air bag)",
-    "description": "Removed and replaced ruptured air spring. Inspected mounting plate and piston for damage, checked height control valve operation, and verified correct ride height. Tested system for leaks at operating pressure.",
-    "keywords": ["air bag", "air spring", "bellows", "ride height"]
+    "id": "brakes-replace-rear-axles-drums-and-brake-shoes",
+    "category": "brakes",
+    "title": "Replace Rear Axles Drums and Brake Shoes",
+    "description": "REPLACE REAR AXLES DRUMS AND BRAKE SHOES"
   },
   {
-    "id": "suspension-replace-shock",
-    "category": "suspension",
-    "title": "Replace shock absorber",
-    "description": "Replaced worn/leaking shock absorber. Inspected mounting bushings and brackets, torqued fasteners to specification, and verified proper damping. Checked surrounding suspension components for wear.",
-    "keywords": ["shock", "damper", "absorber"]
+    "id": "fuel-system-cambio-bomba-electrica",
+    "category": "fuel-system",
+    "title": "Cambio Bomba Electrica",
+    "description": "CAMBIO BOMBA ELECTRICA",
+    "frequency": 1
   },
   {
-    "id": "suspension-replace-bushings",
-    "category": "suspension",
-    "title": "Replace suspension bushings",
-    "description": "Replaced worn equalizer/spring eye bushings. Removed suspension components, pressed in new bushings, reassembled, and torqued all fasteners to specification. Verified proper alignment and free movement.",
-    "keywords": ["bushing", "equalizer", "pivot"]
+    "id": "fuel-system-check-low-and-high-fuel-pressure-system",
+    "category": "fuel-system",
+    "title": "Check Low and High Fuel Pressure System",
+    "description": "CHECK LOW AND HIGH FUEL PRESSURE SYSTEM",
+    "frequency": 1
   },
   {
-    "id": "suspension-replace-height-control-valve",
-    "category": "suspension",
-    "title": "Replace ride height control valve",
-    "description": "Replaced malfunctioning height control valve. Adjusted linkage, set ride height to specification, and verified proper inflation and exhaust of air springs. Confirmed level ride and no leaks.",
-    "keywords": ["height control", "leveling valve", "ride height"]
+    "id": "fuel-system-remove-fuel-tank-to-flush-fuel-lines-and-replace",
+    "category": "fuel-system",
+    "title": "Remove Fuel Tank to Flush Fuel Lines and Replace",
+    "description": "REMOVE FUEL TANK TO FLUSH FUEL LINES AND REPLACE",
+    "frequency": 1
   },
   {
-    "id": "suspension-repair-broken-spring",
-    "category": "suspension",
-    "title": "Replace broken leaf spring",
-    "description": "Removed and replaced broken leaf spring assembly. Inspected hangers, U-bolts, and saddle for damage, installed new U-bolts, and torqued to specification. Verified correct axle alignment.",
-    "keywords": ["leaf spring", "u-bolt", "broken"]
+    "id": "fuel-system-fix-electric-fuel-pump-cummins",
+    "category": "fuel-system",
+    "title": "Fix Electric Fuel Pump Cummins",
+    "description": "FIX ELECTRIC FUEL PUMP CUMMINS"
   },
   {
-    "id": "air-system-repair-leak",
-    "category": "air-system",
-    "title": "Repair air line leak",
-    "description": "Diagnosed and repaired air leak in trailer air system. Replaced damaged air line/fitting, pressure tested system, and verified no leakage at rated pressure. Confirmed proper brake response.",
-    "keywords": ["air leak", "air line", "fitting", "tubing"]
+    "id": "fuel-system-problema-baja-presion-fuel-bomba-e-inyector",
+    "category": "fuel-system",
+    "title": "Problema Baja Presion Fuel Bomba E Inyector",
+    "description": "PROBLEMA BAJA PRESION FUEL BOMBA E INYECTOR"
   },
   {
-    "id": "air-system-replace-gladhand",
-    "category": "air-system",
-    "title": "Replace gladhand and seals",
-    "description": "Replaced damaged gladhand coupler and seal on service/emergency line. Inspected mounting and lines, verified secure connection, and pressure tested for leaks. Confirmed proper coupling with tractor.",
-    "keywords": ["gladhand", "glad hand", "coupler", "seal"]
+    "id": "fuel-system-replace-fuel-recirculation-check-valve",
+    "category": "fuel-system",
+    "title": "Replace Fuel Recirculation Check Valve",
+    "description": "REPLACE FUEL RECIRCULATION CHECK VALVE"
   },
   {
-    "id": "air-system-drain-valve",
-    "category": "air-system",
-    "title": "Replace air tank drain valve",
-    "description": "Replaced corroded/leaking air tank drain valve. Drained and inspected tank for contamination, installed new valve with sealant, and pressure tested for leaks.",
-    "keywords": ["drain valve", "petcock", "air tank", "reservoir"]
+    "id": "a-c-heating-hose-installation",
+    "category": "a-c-heating",
+    "title": "Hose Installation",
+    "description": "HOSE INSTALLATION",
+    "frequency": 1
   },
   {
-    "id": "air-system-replace-relay-valve",
-    "category": "air-system",
-    "title": "Replace brake relay valve",
-    "description": "Replaced faulty relay valve causing slow brake response. Inspected supply and delivery lines, installed new valve, and tested for proper crack pressure and timing. Verified no leaks.",
-    "keywords": ["relay valve", "brake valve"]
+    "id": "a-c-heating-replace-a-c-and-heater-lines-pipes-and-hoses",
+    "category": "a-c-heating",
+    "title": "Replace A/C and Heater Lines Pipes and Hoses",
+    "description": "REPLACE A/C AND HEATER LINES PIPES AND HOSES",
+    "frequency": 1
   },
   {
-    "id": "lighting-replace-tail-light",
-    "category": "lighting-electrical",
-    "title": "Replace tail/stop/turn light",
-    "description": "Replaced inoperative tail/stop/turn lamp assembly. Inspected and cleaned connector, verified ground, and tested all functions for proper operation. Sealed connection against moisture.",
-    "keywords": ["tail light", "stop", "turn", "lamp", "led"]
+    "id": "a-c-heating-fan-switch-speed-sensor-replacement",
+    "category": "a-c-heating",
+    "title": "Fan Switch Speed Sensor Replacement",
+    "description": "FAN SWITCH SPEED SENSOR REPLACEMENT"
   },
   {
-    "id": "lighting-repair-harness",
-    "category": "lighting-electrical",
-    "title": "Repair trailer wiring harness",
-    "description": "Diagnosed and repaired damaged trailer wiring harness. Located fault, repaired/replaced affected wiring with sealed connections, secured harness, and tested all lighting circuits for proper operation.",
-    "keywords": ["wiring", "harness", "short", "open circuit"]
+    "id": "a-c-heating-heater-core-replacement",
+    "category": "a-c-heating",
+    "title": "Heater Core Replacement",
+    "description": "HEATER CORE REPLACEMENT"
   },
   {
-    "id": "lighting-replace-7way-plug",
-    "category": "lighting-electrical",
-    "title": "Replace 7-way connector (nosebox)",
-    "description": "Replaced corroded/damaged 7-way trailer connector. Cleaned and repaired wiring terminals, applied dielectric grease, and tested all circuits for continuity and proper function.",
-    "keywords": ["7-way", "nosebox", "plug", "receptacle", "connector"]
+    "id": "calibration-parameters-calibrate-abs-sensor-and-clear-codes",
+    "category": "calibration-parameters",
+    "title": "Calibrate Abs Sensor and Clear Codes",
+    "description": "CALIBRATE ABS SENSOR AND CLEAR CODES",
+    "frequency": 1
   },
   {
-    "id": "lighting-replace-marker-lights",
-    "category": "lighting-electrical",
-    "title": "Replace clearance/marker lights",
-    "description": "Replaced burned-out clearance/marker lamps. Inspected grommets and seals, verified ground connections, and tested for proper illumination. Sealed to prevent moisture intrusion.",
-    "keywords": ["marker", "clearance", "side light", "led"]
+    "id": "calibration-parameters-change-parameters",
+    "category": "calibration-parameters",
+    "title": "Change Parameters",
+    "description": "CHANGE PARAMETERS",
+    "frequency": 1
   },
   {
-    "id": "lighting-replace-license-light",
-    "category": "lighting-electrical",
-    "title": "Replace license plate light",
-    "description": "Replaced inoperative license plate lamp. Cleaned connection, verified ground, and confirmed proper illumination of plate.",
-    "keywords": ["license", "plate light"]
+    "id": "calibration-parameters-parameters-adjustments",
+    "category": "calibration-parameters",
+    "title": "Parameters Adjustments",
+    "description": "PARAMETERS ADJUSTMENTS",
+    "frequency": 1
   },
   {
-    "id": "tires-mount-balance",
-    "category": "tires-wheels",
-    "title": "Mount and dismount tire",
-    "description": "Dismounted worn tire and mounted new/replacement tire on rim. Inspected rim for damage, installed new valve stem, inflated to specification, and torqued wheel fasteners to manufacturer specification.",
-    "keywords": ["tire", "mount", "dismount", "valve stem"]
+    "id": "calibration-parameters-repro-vin-mismatch",
+    "category": "calibration-parameters",
+    "title": "Repro Vin Mismatch",
+    "description": "REPRO VIN MISMATCH",
+    "frequency": 1
   },
   {
-    "id": "tires-flat-repair",
-    "category": "tires-wheels",
-    "title": "Repair flat tire",
-    "description": "Located puncture and repaired tire using approved plug/patch method. Inspected casing for damage, reinflated to specification, and verified no leaks. Remounted and torqued wheel fasteners.",
-    "keywords": ["flat", "puncture", "patch", "plug", "repair"]
+    "id": "calibration-parameters-calibrar-sas-steer-angle-sensor",
+    "category": "calibration-parameters",
+    "title": "Calibrar Sas (STEER Angle SENSOR)",
+    "description": "CALIBRAR SAS (STEER ANGLE SENSOR)"
   },
   {
-    "id": "tires-replace-wheel",
-    "category": "tires-wheels",
-    "title": "Replace damaged wheel/rim",
-    "description": "Replaced bent/cracked wheel rim. Transferred or installed tire, inflated to specification, and torqued wheel fasteners to manufacturer specification in proper sequence.",
-    "keywords": ["rim", "wheel", "cracked", "bent"]
+    "id": "calibration-parameters-calibrate-esc-and-sas",
+    "category": "calibration-parameters",
+    "title": "Calibrate Esc and Sas",
+    "description": "CALIBRATE ESC AND SAS"
   },
   {
-    "id": "tires-replace-studs",
-    "category": "tires-wheels",
-    "title": "Replace wheel studs",
-    "description": "Replaced broken/stripped wheel studs. Inspected hub and mounting surface, installed new studs and nuts, and torqued to specification. Verified proper wheel seating.",
-    "keywords": ["stud", "lug", "bolt", "broken"]
+    "id": "calibration-parameters-fix-cruise-control-parameters",
+    "category": "calibration-parameters",
+    "title": "Fix Cruise Control Parameters",
+    "description": "FIX CRUISE CONTROL PARAMETERS"
   },
   {
-    "id": "tires-rotate",
-    "category": "tires-wheels",
-    "title": "Rotate tires",
-    "description": "Rotated trailer tires to promote even wear. Inspected tread depth and condition, set inflation to specification, and torqued all wheel fasteners.",
-    "keywords": ["rotate", "rotation"]
+    "id": "suspension-tires-replace-center-bearing",
+    "category": "suspension-tires",
+    "title": "Replace Center Bearing",
+    "description": "REPLACE CENTER BEARING",
+    "frequency": 1
   },
   {
-    "id": "doors-replace-hinge",
-    "category": "doors",
-    "title": "Replace door hinge",
-    "description": "Replaced broken/worn rear door hinge. Aligned door for proper seal and operation, installed new hardware, and verified smooth swing and secure latching.",
-    "keywords": ["hinge", "rear door", "swing door"]
+    "id": "suspension-tires-replace-load-pressure-sensor-and-calibrate",
+    "category": "suspension-tires",
+    "title": "Replace Load Pressure Sensor and Calibrate",
+    "description": "REPLACE LOAD PRESSURE SENSOR AND CALIBRATE",
+    "frequency": 1
   },
   {
-    "id": "doors-repair-roll-up",
-    "category": "doors",
-    "title": "Repair roll-up door",
-    "description": "Repaired roll-up (overhead) door operation. Replaced damaged panels/rollers, adjusted spring tension and cables, lubricated track, and verified smooth raising and lowering.",
-    "keywords": ["roll-up", "overhead door", "rollers", "spring", "cable"]
+    "id": "suspension-tires-cascadia-air-bag-replacement",
+    "category": "suspension-tires",
+    "title": "Cascadia Air Bag Replacement",
+    "description": "CASCADIA AIR BAG REPLACEMENT"
   },
   {
-    "id": "doors-replace-seal",
-    "category": "doors",
-    "title": "Replace door seal/gasket",
-    "description": "Replaced worn/damaged door seal to restore weather and air tightness. Cleaned mounting surface, installed new gasket, and verified proper compression and closure.",
-    "keywords": ["seal", "gasket", "weatherstrip", "rubber"]
+    "id": "suspension-tires-replace-4-batteries",
+    "category": "suspension-tires",
+    "title": "Replace 4 Batteries",
+    "description": "REPLACE 4 BATTERIES"
   },
   {
-    "id": "doors-replace-latch",
-    "category": "doors",
-    "title": "Replace door lock/latch hardware",
-    "description": "Replaced damaged cam lock/latch and keepers. Adjusted for secure closure, lubricated moving parts, and verified positive locking and release.",
-    "keywords": ["latch", "lock", "cam lock", "keeper", "handle"]
+    "id": "suspension-tires-replace-rear-right-tire-pressure-sensor",
+    "category": "suspension-tires",
+    "title": "Replace Rear Right Tire Pressure Sensor",
+    "description": "REPLACE REAR RIGHT TIRE PRESSURE SENSOR"
   },
   {
-    "id": "flooring-replace-boards",
-    "category": "flooring",
-    "title": "Replace floor boards",
-    "description": "Removed damaged/rotted floor boards and installed replacement boards. Inspected cross members for corrosion, secured new boards with proper fasteners, and verified level, solid floor surface.",
-    "keywords": ["floor", "boards", "oak", "rotted", "wood"]
+    "id": "suspension-tires-replace-suspension-airbags",
+    "category": "suspension-tires",
+    "title": "Replace Suspension Airbags",
+    "description": "REPLACE SUSPENSION AIRBAGS"
   },
   {
-    "id": "flooring-repair-crossmember",
-    "category": "flooring",
-    "title": "Repair/replace floor cross member",
-    "description": "Repaired or replaced corroded/cracked floor cross member. Removed affected section, welded/installed new member, and verified structural integrity and proper floor support.",
-    "keywords": ["cross member", "crossmember", "support", "weld"]
+    "id": "diagnostic-diagnostic",
+    "category": "diagnostic",
+    "title": "Diagnostic",
+    "description": "DIAGNOSTIC",
+    "frequency": 5
   },
   {
-    "id": "flooring-reseal-floor",
-    "category": "flooring",
-    "title": "Reseal/coat floor",
-    "description": "Cleaned and resealed floor to protect against moisture and wear. Applied approved coating, verified full coverage, and allowed proper cure time.",
-    "keywords": ["seal", "coat", "undercoat", "moisture"]
+    "id": "diagnostic-diagnostico",
+    "category": "diagnostic",
+    "title": "Diagnostico",
+    "description": "DIAGNOSTICO",
+    "frequency": 1
   },
   {
-    "id": "refrigeration-service-reefer",
-    "category": "refrigeration",
-    "title": "Service reefer unit",
-    "description": "Performed scheduled service on refrigeration unit. Replaced filters, checked belts, inspected refrigerant charge, verified defrost operation, and confirmed unit holds set point temperature.",
-    "keywords": ["reefer", "refrigeration", "service", "pm", "thermo king", "carrier"]
+    "id": "diagnostic-tubo-diagnostic",
+    "category": "diagnostic",
+    "title": "Tubo Diagnostic",
+    "description": "TUBO DIAGNOSTIC",
+    "frequency": 1
   },
   {
-    "id": "refrigeration-recharge",
-    "category": "refrigeration",
-    "title": "Recover, evacuate and recharge refrigerant",
-    "description": "Recovered refrigerant, evacuated system, and recharged to specification. Leak tested system, verified proper operating pressures, and confirmed unit reaches and holds set point.",
-    "keywords": ["refrigerant", "recharge", "freon", "leak", "evacuate"]
+    "id": "diagnostic-check-engine-light-diagnostic",
+    "category": "diagnostic",
+    "title": "Check Engine Light Diagnostic",
+    "description": "CHECK ENGINE LIGHT DIAGNOSTIC"
   },
   {
-    "id": "refrigeration-replace-belt",
-    "category": "refrigeration",
-    "title": "Replace reefer drive belt",
-    "description": "Replaced worn/broken drive belt on refrigeration unit. Inspected pulleys and tensioner, set correct tension, and verified proper unit operation.",
-    "keywords": ["belt", "drive belt", "reefer", "tensioner"]
+    "id": "diagnostic-diag-fault-codes",
+    "category": "diagnostic",
+    "title": "Diag Fault Codes",
+    "description": "DIAG FAULT CODES"
   },
   {
-    "id": "refrigeration-replace-fuel-filter",
-    "category": "refrigeration",
-    "title": "Replace reefer fuel filter",
-    "description": "Replaced fuel filter on refrigeration unit diesel engine. Primed fuel system, bled air, and verified proper engine start and operation.",
-    "keywords": ["fuel filter", "reefer", "diesel", "engine"]
+    "id": "diagnostic-diag-transmission-fault-codes",
+    "category": "diagnostic",
+    "title": "Diag Transmission Fault Codes",
+    "description": "DIAG TRANSMISSION FAULT CODES"
   },
   {
-    "id": "frame-weld-crack",
-    "category": "frame",
-    "title": "Weld repair frame crack",
-    "description": "Repaired cracked frame/rail by grinding out crack and welding to restore integrity. Inspected surrounding area, reinforced as needed, and verified sound, structurally safe repair.",
-    "keywords": ["weld", "crack", "frame", "rail", "structural"]
+    "id": "diagnostic-road-service-servicio-en-carretera",
+    "category": "diagnostic",
+    "title": "Road Service / Servicio en Carretera",
+    "description": "ROAD SERVICE / SERVICIO EN CARRETERA"
   },
   {
-    "id": "frame-replace-crossmember",
-    "category": "frame",
-    "title": "Replace frame cross member",
-    "description": "Removed damaged/corroded frame cross member and installed replacement. Welded/bolted to specification, verified alignment, and confirmed structural integrity.",
-    "keywords": ["cross member", "frame", "weld", "structural"]
+    "id": "other-varios-ajustar-actuadores",
+    "category": "other-varios",
+    "title": "Ajustar Actuadores",
+    "description": "AJUSTAR ACTUADORES",
+    "frequency": 1
   },
   {
-    "id": "frame-repair-rub-rail",
-    "category": "frame",
-    "title": "Repair/replace rub rail",
-    "description": "Replaced damaged rub rail and mounting hardware. Straightened or replaced affected section, secured to frame, and verified proper protection of side wall.",
-    "keywords": ["rub rail", "side rail", "bent"]
+    "id": "other-varios-diferencial-mercedes-repair",
+    "category": "other-varios",
+    "title": "Diferencial Mercedes Repair",
+    "description": "DIFERENCIAL MERCEDES REPAIR"
   },
   {
-    "id": "frame-repair-mud-flap",
-    "category": "frame",
-    "title": "Replace mud flaps and hangers",
-    "description": "Replaced worn/missing mud flaps and damaged hangers/brackets. Secured to frame, verified proper height and coverage, and confirmed compliance.",
-    "keywords": ["mud flap", "splash guard", "hanger", "bracket"]
+    "id": "other-varios-leak-and-sensor-repair",
+    "category": "other-varios",
+    "title": "Leak and Sensor Repair",
+    "description": "LEAK AND SENSOR REPAIR"
   },
   {
-    "id": "landing-gear-replace",
-    "category": "landing-gear",
-    "title": "Replace landing gear leg",
-    "description": "Removed and replaced damaged/bent landing gear leg. Aligned and matched to companion leg, lubricated gearing, and verified smooth, even raising and lowering through full travel.",
-    "keywords": ["landing gear", "leg", "dolly", "bent"]
+    "id": "other-varios-oil-change-service",
+    "category": "other-varios",
+    "title": "Oil Change Service",
+    "description": "OIL CHANGE SERVICE"
   },
   {
-    "id": "landing-gear-repair-crank",
-    "category": "landing-gear",
-    "title": "Repair landing gear crank/gearbox",
-    "description": "Repaired landing gear crank handle and gearbox. Replaced worn gears/handle, lubricated mechanism, and verified smooth operation in high and low range.",
-    "keywords": ["crank", "handle", "gearbox", "landing gear"]
+    "id": "other-varios-pto-rpm-adjustment",
+    "category": "other-varios",
+    "title": "Pto Rpm Adjustment",
+    "description": "PTO RPM ADJUSTMENT"
   },
   {
-    "id": "landing-gear-replace-foot",
-    "category": "landing-gear",
-    "title": "Replace landing gear foot/shoe",
-    "description": "Replaced damaged landing gear foot pad/shoe. Inspected leg for damage, installed new foot, and verified stable support and proper retraction.",
-    "keywords": ["foot", "shoe", "pad", "landing gear"]
+    "id": "other-varios-radiador-manguera-replacement",
+    "category": "other-varios",
+    "title": "Radiador Manguera Replacement",
+    "description": "RADIADOR MANGUERA REPLACEMENT"
   },
   {
-    "id": "kingpin-inspect",
-    "category": "kingpin-coupling",
-    "title": "Inspect/measure kingpin",
-    "description": "Inspected and measured kingpin for wear using gauge. Checked upper coupler plate for cracks and proper lubrication, and confirmed kingpin within wear specification for safe coupling.",
-    "keywords": ["kingpin", "king pin", "gauge", "wear", "upper coupler"]
+    "id": "other-varios-remove-oil-cooler-to-replace-water-pump-leak",
+    "category": "other-varios",
+    "title": "Remove Oil Cooler to Replace Water Pump Leak",
+    "description": "REMOVE OIL COOLER TO REPLACE WATER PUMP LEAK"
   },
   {
-    "id": "kingpin-replace",
-    "category": "kingpin-coupling",
-    "title": "Replace kingpin",
-    "description": "Removed worn/damaged kingpin and installed replacement. Inspected upper coupler assembly, welded/secured per specification, and verified proper dimensions and safe coupling.",
-    "keywords": ["kingpin", "king pin", "replace", "weld"]
+    "id": "other-varios-replace-selenoid-valve",
+    "category": "other-varios",
+    "title": "Replace Selenoid Valve",
+    "description": "REPLACE SELENOID VALVE"
   },
   {
-    "id": "kingpin-lube-upper-coupler",
-    "category": "kingpin-coupling",
-    "title": "Lubricate upper coupler/fifth wheel plate",
-    "description": "Cleaned and lubricated upper coupler plate to ensure proper fifth wheel engagement. Inspected for cracks and wear, and applied approved grease.",
-    "keywords": ["upper coupler", "fifth wheel", "grease", "lube", "plate"]
-  },
-  {
-    "id": "misc-dot-inspection",
-    "category": "misc",
-    "title": "Annual DOT/FMCSA inspection",
-    "description": "Performed annual federal (DOT/FMCSA) inspection. Checked brakes, lights, tires, suspension, frame, coupling, and air system. Documented findings and affixed inspection sticker.",
-    "keywords": ["dot", "fmcsa", "annual", "inspection", "sticker"]
-  },
-  {
-    "id": "misc-pm-service",
-    "category": "misc",
-    "title": "Preventive maintenance (PM) service",
-    "description": "Performed preventive maintenance service. Lubricated all grease points, inspected brakes, tires, lights, and air system, checked fluid levels, and documented condition and recommendations.",
-    "keywords": ["pm", "preventive", "maintenance", "lube", "service"]
-  },
-  {
-    "id": "misc-pressure-wash",
-    "category": "misc",
-    "title": "Wash and clean trailer",
-    "description": "Pressure washed and cleaned trailer exterior/interior as requested. Removed buildup and debris and inspected for visible damage during cleaning.",
-    "keywords": ["wash", "clean", "pressure wash"]
-  },
-  {
-    "id": "misc-roadside-call",
-    "category": "misc",
-    "title": "Road service call",
-    "description": "Responded to road service call. Diagnosed reported issue on site, performed necessary repair to return unit to service, and verified safe operation. Includes travel/service time.",
-    "keywords": ["road service", "roadside", "call out", "mobile", "travel"]
+    "id": "other-varios-sensores-de-presion-replacement",
+    "category": "other-varios",
+    "title": "Sensores de Presion Replacement",
+    "description": "SENSORES DE PRESION REPLACEMENT"
   }
 ]

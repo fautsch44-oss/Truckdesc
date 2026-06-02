@@ -10,6 +10,7 @@ export interface RepairDescription {
   title: string
   description: string
   keywords?: string[]
+  frequency?: number
   laborNotes?: string
   partsNotes?: string
   unitPrice?: number

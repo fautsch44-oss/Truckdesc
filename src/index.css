@@ -164,6 +164,12 @@ button {
   margin-top: 6px;
 }
 
+.badge-freq {
+  color: #92400e;
+  background: #fef3c7;
+  margin-left: 6px;
+}
+
 .card-desc {
   color: var(--text);
   font-size: 15px;

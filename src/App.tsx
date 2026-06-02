@@ -112,7 +112,7 @@ export default function App() {
     <div className="app">
       <div className="topbar">
         <div className="topbar-row">
-          <h1>Trailer Repair Descriptions</h1>
+          <h1>Truck Repair Descriptions</h1>
           <div style={{ display: 'flex', gap: 8 }}>
             <button
               className="nav-btn"

@@ -1,12 +1,16 @@
-# Trailer Repair Descriptions
+# Truck Repair Descriptions
 
-A simple web app that holds a library of **pre-approved trailer repair
+A simple web app that holds a library of **pre-approved truck & trailer repair
 descriptions**. The chief mechanic searches and **copies** the right
 description with one tap; the office pastes it straight into a QuickBooks
 invoice — no more re-writing every repair from scratch.
 
+Seeded with the shop's real catalog (173 descriptions across 12 categories:
+ABS/traction control, engine, transmission, electrical, DPF/EGR, brakes, fuel,
+A/C, calibration, suspension/tires, diagnostic, and other).
+
 - 📱 Works on phone, tablet, and PC (just open the website).
-- 🔎 Fast search + categories (brakes, suspension, lighting, tires, …).
+- 🔎 Fast search + categories; most-used repairs are flagged and sorted first.
 - 📋 One-tap **Copy**, plus **Select** mode to copy several line items at once.
 - ✏️ A **Manage** screen to add/edit descriptions, with Import/Export.
 - 💵 Free static hosting on Netlify. No server, no database, no monthly cost.

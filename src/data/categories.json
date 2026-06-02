@@ -1,14 +1,62 @@
 [
-  { "id": "brakes", "label": "Brakes", "order": 1 },
-  { "id": "suspension", "label": "Suspension", "order": 2 },
-  { "id": "air-system", "label": "Air System", "order": 3 },
-  { "id": "lighting-electrical", "label": "Lighting & Electrical", "order": 4 },
-  { "id": "tires-wheels", "label": "Tires & Wheels", "order": 5 },
-  { "id": "doors", "label": "Doors", "order": 6 },
-  { "id": "flooring", "label": "Flooring", "order": 7 },
-  { "id": "refrigeration", "label": "Refrigeration (Reefer)", "order": 8 },
-  { "id": "frame", "label": "Frame & Body", "order": 9 },
-  { "id": "landing-gear", "label": "Landing Gear", "order": 10 },
-  { "id": "kingpin-coupling", "label": "Kingpin & Coupling", "order": 11 },
-  { "id": "misc", "label": "Miscellaneous", "order": 12 }
+  {
+    "id": "abs-traction-control",
+    "label": "ABS / TRACTION CONTROL",
+    "order": 1
+  },
+  {
+    "id": "engine-motor",
+    "label": "ENGINE / MOTOR",
+    "order": 2
+  },
+  {
+    "id": "transmission-clutch",
+    "label": "TRANSMISSION / CLUTCH",
+    "order": 3
+  },
+  {
+    "id": "electrical-wiring",
+    "label": "ELECTRICAL / WIRING",
+    "order": 4
+  },
+  {
+    "id": "dpf-egr-emissions",
+    "label": "DPF / EGR / EMISSIONS",
+    "order": 5
+  },
+  {
+    "id": "brakes",
+    "label": "BRAKES",
+    "order": 6
+  },
+  {
+    "id": "fuel-system",
+    "label": "FUEL SYSTEM",
+    "order": 7
+  },
+  {
+    "id": "a-c-heating",
+    "label": "A/C / HEATING",
+    "order": 8
+  },
+  {
+    "id": "calibration-parameters",
+    "label": "CALIBRATION / PARAMETERS",
+    "order": 9
+  },
+  {
+    "id": "suspension-tires",
+    "label": "SUSPENSION / TIRES",
+    "order": 10
+  },
+  {
+    "id": "diagnostic",
+    "label": "DIAGNOSTIC",
+    "order": 11
+  },
+  {
+    "id": "other-varios",
+    "label": "OTHER / VARIOS",
+    "order": 12
+  }
 ]
