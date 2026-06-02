@@ -523,6 +523,60 @@ button {
   margin-bottom: 4px;
 }
 
+/* ---------- Recipients ---------- */
+.rcp-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.rcp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 8px 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rcp-chip.active {
+  background: #dcfce7;
+  border-color: var(--green);
+  color: #065f46;
+}
+
+.rcp-count {
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+
+.rcp-add-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.rcp-form {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.rcp-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .sheet-textarea {
   width: 100%;
   min-height: 160px;

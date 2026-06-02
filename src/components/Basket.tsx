@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react'
-import type { RepairDescription } from '../types'
+import type { Recipient, RepairDescription } from '../types'
 import { copyText } from '../lib/clipboard'
+import {
+  loadRecipients,
+  saveRecipients,
+  sortRecipients,
+  addRecipient,
+  recordSend,
+  removeRecipient,
+} from '../lib/recipients'
 
 interface BasketProps {
   items: RepairDescription[]
@@ -9,37 +17,82 @@ interface BasketProps {
   onToast: (msg: string) => void
 }
 
-const WA_NUMBER_KEY = 'waNumber'
-
-// Build a WhatsApp deep link. With a number it opens a chat with that contact;
-// without one, WhatsApp asks who to send it to. Works on phone app and web.
 function whatsappLink(number: string, text: string): string {
   const digits = number.replace(/[^0-9]/g, '')
   const base = digits ? `https://wa.me/${digits}` : 'https://wa.me/'
   return `${base}?text=${encodeURIComponent(text)}`
 }
 
+// Optional: import a contact from the phone (Android Chrome only).
+const contactPickerSupported =
+  typeof navigator !== 'undefined' &&
+  'contacts' in navigator &&
+  typeof (navigator as any).contacts?.select === 'function'
+
 export default function Basket({ items, onRemove, onClear, onToast }: BasketProps) {
   const [open, setOpen] = useState(false)
   const [draft, setDraft] = useState('')
-  const [waNumber, setWaNumber] = useState(() => localStorage.getItem(WA_NUMBER_KEY) ?? '')
+  const [recipients, setRecipients] = useState<Recipient[]>(() => loadRecipients())
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [adding, setAdding] = useState(false)
+  const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
+
+  const sorted = sortRecipients(recipients)
 
   const listText = items.map((i) => i.description).join('\n')
 
-  // Refresh the editable text whenever the panel opens or the selection changes.
   useEffect(() => {
     if (open) setDraft(listText)
   }, [open, listText])
 
-  function saveNumber(value: string) {
-    setWaNumber(value)
-    localStorage.setItem(WA_NUMBER_KEY, value)
+  // Each time the panel opens, preselect the most-recurrent contact.
+  useEffect(() => {
+    if (open && sorted.length > 0) setSelectedId(sorted[0].id)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open])
+
+  function persist(next: Recipient[]) {
+    setRecipients(next)
+    saveRecipients(next)
+  }
+
+  function saveContact() {
+    if (!newNumber.trim()) return
+    const next = addRecipient(recipients, newName, newNumber)
+    persist(next)
+    const digits = newNumber.replace(/[^0-9]/g, '')
+    const justAdded = next.find((r) => r.number.replace(/[^0-9]/g, '') === digits)
+    if (justAdded) setSelectedId(justAdded.id)
+    setNewName('')
+    setNewNumber('')
+    setAdding(false)
+  }
+
+  async function pickFromPhone() {
+    try {
+      const res = await (navigator as any).contacts.select(['name', 'tel'], { multiple: false })
+      if (res && res[0]) {
+        setNewName(res[0].name?.[0] ?? '')
+        setNewNumber(res[0].tel?.[0] ?? '')
+        setAdding(true)
+      }
+    } catch {
+      // user cancelled or not supported
+    }
+  }
+
+  function deleteContact(id: string) {
+    persist(removeRecipient(recipients, id))
+    if (selectedId === id) setSelectedId(null)
   }
 
   function sendWhatsApp() {
     const text = draft.trim()
     if (!text) return
-    window.open(whatsappLink(waNumber, text), '_blank')
+    const recipient = recipients.find((r) => r.id === selectedId)
+    window.open(whatsappLink(recipient?.number ?? '', text), '_blank')
+    if (recipient) persist(recordSend(recipients, recipient.id))
   }
 
   async function copyAll() {
@@ -90,16 +143,70 @@ export default function Basket({ items, onRemove, onClear, onToast }: BasketProp
               onChange={(e) => setDraft(e.target.value)}
             />
 
-            <div className="field">
-              <label>Send to WhatsApp number (optional, with country code)</label>
-              <input
-                type="tel"
-                inputMode="tel"
-                placeholder="e.g. 1 305 555 1234"
-                value={waNumber}
-                onChange={(e) => saveNumber(e.target.value)}
-              />
-            </div>
+            <label className="field-label">Send to</label>
+            {sorted.length > 0 && (
+              <div className="rcp-list">
+                {sorted.map((r, idx) => (
+                  <span
+                    key={r.id}
+                    className={`rcp-chip${selectedId === r.id ? ' active' : ''}`}
+                    onClick={() => setSelectedId(r.id)}
+                  >
+                    {idx === 0 && r.count > 0 ? '★ ' : ''}
+                    {r.name}
+                    {r.count > 0 ? <span className="rcp-count">{r.count}</span> : null}
+                    <button
+                      className="sel-chip-x"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        deleteContact(r.id)
+                      }}
+                      aria-label={`Delete ${r.name}`}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {adding ? (
+              <div className="rcp-form">
+                <div className="field">
+                  <label>Contact name</label>
+                  <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="e.g. Office / Boss" />
+                </div>
+                <div className="field">
+                  <label>WhatsApp number (with country code)</label>
+                  <input
+                    type="tel"
+                    inputMode="tel"
+                    value={newNumber}
+                    onChange={(e) => setNewNumber(e.target.value)}
+                    placeholder="e.g. 1 305 555 1234"
+                  />
+                </div>
+                <div className="rcp-form-actions">
+                  <button className="btn btn-add" onClick={saveContact}>
+                    Save contact
+                  </button>
+                  <button className="btn btn-ghost" onClick={() => setAdding(false)}>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="rcp-add-row">
+                <button className="link-btn" onClick={() => setAdding(true)}>
+                  + Add contact
+                </button>
+                {contactPickerSupported && (
+                  <button className="link-btn" onClick={pickFromPhone}>
+                    Import from phone
+                  </button>
+                )}
+              </div>
+            )}
 
             <div className="sheet-actions">
               <button className="btn btn-send" onClick={sendWhatsApp}>

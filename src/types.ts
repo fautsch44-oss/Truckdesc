@@ -16,3 +16,11 @@ export interface RepairDescription {
   unitPrice?: number
   qbItemName?: string
 }
+
+export interface Recipient {
+  id: string
+  name: string
+  number: string
+  count: number
+  lastUsed: number
+}
