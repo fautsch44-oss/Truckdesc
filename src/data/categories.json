@@ -1,0 +1,14 @@
+[
+  { "id": "brakes", "label": "Brakes", "order": 1 },
+  { "id": "suspension", "label": "Suspension", "order": 2 },
+  { "id": "air-system", "label": "Air System", "order": 3 },
+  { "id": "lighting-electrical", "label": "Lighting & Electrical", "order": 4 },
+  { "id": "tires-wheels", "label": "Tires & Wheels", "order": 5 },
+  { "id": "doors", "label": "Doors", "order": 6 },
+  { "id": "flooring", "label": "Flooring", "order": 7 },
+  { "id": "refrigeration", "label": "Refrigeration (Reefer)", "order": 8 },
+  { "id": "frame", "label": "Frame & Body", "order": 9 },
+  { "id": "landing-gear", "label": "Landing Gear", "order": 10 },
+  { "id": "kingpin-coupling", "label": "Kingpin & Coupling", "order": 11 },
+  { "id": "misc", "label": "Miscellaneous", "order": 12 }
+]

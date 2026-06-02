@@ -1,0 +1,352 @@
+[
+  {
+    "id": "brakes-replace-brake-chamber",
+    "category": "brakes",
+    "title": "Replace brake chamber",
+    "description": "Removed and replaced defective brake chamber. Inspected slack adjuster and pushrod travel, adjusted brakes to specification, and tested for air leaks. Verified proper brake application and release.",
+    "keywords": ["air chamber", "diaphragm", "spring brake"]
+  },
+  {
+    "id": "brakes-reline-shoes",
+    "category": "brakes",
+    "title": "Replace brake shoes and linings",
+    "description": "Replaced worn brake shoes and linings on axle. Cleaned and inspected drums, replaced hardware kit, lubricated cam shaft and S-cam bushings, and adjusted brakes to proper clearance. Road tested for correct operation.",
+    "keywords": ["reline", "lining", "drum brake"]
+  },
+  {
+    "id": "brakes-replace-drum",
+    "category": "brakes",
+    "title": "Replace brake drum",
+    "description": "Removed and replaced cracked/worn brake drum. Inspected bearings and seals, repacked wheel bearings, installed new seal, and adjusted brakes. Verified torque on wheel fasteners to manufacturer specification.",
+    "keywords": ["drum", "wheel hub"]
+  },
+  {
+    "id": "brakes-replace-slack-adjuster",
+    "category": "brakes",
+    "title": "Replace automatic slack adjuster",
+    "description": "Replaced failed automatic slack adjuster. Greased and verified free movement, set proper installation angle, and adjusted pushrod stroke to specification. Tested brake application for correct self-adjustment.",
+    "keywords": ["slack", "adjuster", "asa"]
+  },
+  {
+    "id": "brakes-replace-abs-sensor",
+    "category": "brakes",
+    "title": "Replace ABS wheel speed sensor",
+    "description": "Diagnosed ABS fault and replaced defective wheel speed sensor and clip. Cleaned sensor bore, applied anti-seize, cleared fault codes, and confirmed ABS lamp operation and signal output.",
+    "keywords": ["abs", "sensor", "wheel speed", "ecu"]
+  },
+  {
+    "id": "brakes-grease-seal-replacement",
+    "category": "brakes",
+    "title": "Replace leaking wheel seal",
+    "description": "Replaced leaking hub wheel seal contaminating brake linings. Cleaned hub and spindle, repacked bearings with grease, installed new seal, and adjusted brakes. Verified no further leakage.",
+    "keywords": ["seal", "grease", "hub", "leak"]
+  },
+  {
+    "id": "suspension-replace-air-bag",
+    "category": "suspension",
+    "title": "Replace air spring (air bag)",
+    "description": "Removed and replaced ruptured air spring. Inspected mounting plate and piston for damage, checked height control valve operation, and verified correct ride height. Tested system for leaks at operating pressure.",
+    "keywords": ["air bag", "air spring", "bellows", "ride height"]
+  },
+  {
+    "id": "suspension-replace-shock",
+    "category": "suspension",
+    "title": "Replace shock absorber",
+    "description": "Replaced worn/leaking shock absorber. Inspected mounting bushings and brackets, torqued fasteners to specification, and verified proper damping. Checked surrounding suspension components for wear.",
+    "keywords": ["shock", "damper", "absorber"]
+  },
+  {
+    "id": "suspension-replace-bushings",
+    "category": "suspension",
+    "title": "Replace suspension bushings",
+    "description": "Replaced worn equalizer/spring eye bushings. Removed suspension components, pressed in new bushings, reassembled, and torqued all fasteners to specification. Verified proper alignment and free movement.",
+    "keywords": ["bushing", "equalizer", "pivot"]
+  },
+  {
+    "id": "suspension-replace-height-control-valve",
+    "category": "suspension",
+    "title": "Replace ride height control valve",
+    "description": "Replaced malfunctioning height control valve. Adjusted linkage, set ride height to specification, and verified proper inflation and exhaust of air springs. Confirmed level ride and no leaks.",
+    "keywords": ["height control", "leveling valve", "ride height"]
+  },
+  {
+    "id": "suspension-repair-broken-spring",
+    "category": "suspension",
+    "title": "Replace broken leaf spring",
+    "description": "Removed and replaced broken leaf spring assembly. Inspected hangers, U-bolts, and saddle for damage, installed new U-bolts, and torqued to specification. Verified correct axle alignment.",
+    "keywords": ["leaf spring", "u-bolt", "broken"]
+  },
+  {
+    "id": "air-system-repair-leak",
+    "category": "air-system",
+    "title": "Repair air line leak",
+    "description": "Diagnosed and repaired air leak in trailer air system. Replaced damaged air line/fitting, pressure tested system, and verified no leakage at rated pressure. Confirmed proper brake response.",
+    "keywords": ["air leak", "air line", "fitting", "tubing"]
+  },
+  {
+    "id": "air-system-replace-gladhand",
+    "category": "air-system",
+    "title": "Replace gladhand and seals",
+    "description": "Replaced damaged gladhand coupler and seal on service/emergency line. Inspected mounting and lines, verified secure connection, and pressure tested for leaks. Confirmed proper coupling with tractor.",
+    "keywords": ["gladhand", "glad hand", "coupler", "seal"]
+  },
+  {
+    "id": "air-system-drain-valve",
+    "category": "air-system",
+    "title": "Replace air tank drain valve",
+    "description": "Replaced corroded/leaking air tank drain valve. Drained and inspected tank for contamination, installed new valve with sealant, and pressure tested for leaks.",
+    "keywords": ["drain valve", "petcock", "air tank", "reservoir"]
+  },
+  {
+    "id": "air-system-replace-relay-valve",
+    "category": "air-system",
+    "title": "Replace brake relay valve",
+    "description": "Replaced faulty relay valve causing slow brake response. Inspected supply and delivery lines, installed new valve, and tested for proper crack pressure and timing. Verified no leaks.",
+    "keywords": ["relay valve", "brake valve"]
+  },
+  {
+    "id": "lighting-replace-tail-light",
+    "category": "lighting-electrical",
+    "title": "Replace tail/stop/turn light",
+    "description": "Replaced inoperative tail/stop/turn lamp assembly. Inspected and cleaned connector, verified ground, and tested all functions for proper operation. Sealed connection against moisture.",
+    "keywords": ["tail light", "stop", "turn", "lamp", "led"]
+  },
+  {
+    "id": "lighting-repair-harness",
+    "category": "lighting-electrical",
+    "title": "Repair trailer wiring harness",
+    "description": "Diagnosed and repaired damaged trailer wiring harness. Located fault, repaired/replaced affected wiring with sealed connections, secured harness, and tested all lighting circuits for proper operation.",
+    "keywords": ["wiring", "harness", "short", "open circuit"]
+  },
+  {
+    "id": "lighting-replace-7way-plug",
+    "category": "lighting-electrical",
+    "title": "Replace 7-way connector (nosebox)",
+    "description": "Replaced corroded/damaged 7-way trailer connector. Cleaned and repaired wiring terminals, applied dielectric grease, and tested all circuits for continuity and proper function.",
+    "keywords": ["7-way", "nosebox", "plug", "receptacle", "connector"]
+  },
+  {
+    "id": "lighting-replace-marker-lights",
+    "category": "lighting-electrical",
+    "title": "Replace clearance/marker lights",
+    "description": "Replaced burned-out clearance/marker lamps. Inspected grommets and seals, verified ground connections, and tested for proper illumination. Sealed to prevent moisture intrusion.",
+    "keywords": ["marker", "clearance", "side light", "led"]
+  },
+  {
+    "id": "lighting-replace-license-light",
+    "category": "lighting-electrical",
+    "title": "Replace license plate light",
+    "description": "Replaced inoperative license plate lamp. Cleaned connection, verified ground, and confirmed proper illumination of plate.",
+    "keywords": ["license", "plate light"]
+  },
+  {
+    "id": "tires-mount-balance",
+    "category": "tires-wheels",
+    "title": "Mount and dismount tire",
+    "description": "Dismounted worn tire and mounted new/replacement tire on rim. Inspected rim for damage, installed new valve stem, inflated to specification, and torqued wheel fasteners to manufacturer specification.",
+    "keywords": ["tire", "mount", "dismount", "valve stem"]
+  },
+  {
+    "id": "tires-flat-repair",
+    "category": "tires-wheels",
+    "title": "Repair flat tire",
+    "description": "Located puncture and repaired tire using approved plug/patch method. Inspected casing for damage, reinflated to specification, and verified no leaks. Remounted and torqued wheel fasteners.",
+    "keywords": ["flat", "puncture", "patch", "plug", "repair"]
+  },
+  {
+    "id": "tires-replace-wheel",
+    "category": "tires-wheels",
+    "title": "Replace damaged wheel/rim",
+    "description": "Replaced bent/cracked wheel rim. Transferred or installed tire, inflated to specification, and torqued wheel fasteners to manufacturer specification in proper sequence.",
+    "keywords": ["rim", "wheel", "cracked", "bent"]
+  },
+  {
+    "id": "tires-replace-studs",
+    "category": "tires-wheels",
+    "title": "Replace wheel studs",
+    "description": "Replaced broken/stripped wheel studs. Inspected hub and mounting surface, installed new studs and nuts, and torqued to specification. Verified proper wheel seating.",
+    "keywords": ["stud", "lug", "bolt", "broken"]
+  },
+  {
+    "id": "tires-rotate",
+    "category": "tires-wheels",
+    "title": "Rotate tires",
+    "description": "Rotated trailer tires to promote even wear. Inspected tread depth and condition, set inflation to specification, and torqued all wheel fasteners.",
+    "keywords": ["rotate", "rotation"]
+  },
+  {
+    "id": "doors-replace-hinge",
+    "category": "doors",
+    "title": "Replace door hinge",
+    "description": "Replaced broken/worn rear door hinge. Aligned door for proper seal and operation, installed new hardware, and verified smooth swing and secure latching.",
+    "keywords": ["hinge", "rear door", "swing door"]
+  },
+  {
+    "id": "doors-repair-roll-up",
+    "category": "doors",
+    "title": "Repair roll-up door",
+    "description": "Repaired roll-up (overhead) door operation. Replaced damaged panels/rollers, adjusted spring tension and cables, lubricated track, and verified smooth raising and lowering.",
+    "keywords": ["roll-up", "overhead door", "rollers", "spring", "cable"]
+  },
+  {
+    "id": "doors-replace-seal",
+    "category": "doors",
+    "title": "Replace door seal/gasket",
+    "description": "Replaced worn/damaged door seal to restore weather and air tightness. Cleaned mounting surface, installed new gasket, and verified proper compression and closure.",
+    "keywords": ["seal", "gasket", "weatherstrip", "rubber"]
+  },
+  {
+    "id": "doors-replace-latch",
+    "category": "doors",
+    "title": "Replace door lock/latch hardware",
+    "description": "Replaced damaged cam lock/latch and keepers. Adjusted for secure closure, lubricated moving parts, and verified positive locking and release.",
+    "keywords": ["latch", "lock", "cam lock", "keeper", "handle"]
+  },
+  {
+    "id": "flooring-replace-boards",
+    "category": "flooring",
+    "title": "Replace floor boards",
+    "description": "Removed damaged/rotted floor boards and installed replacement boards. Inspected cross members for corrosion, secured new boards with proper fasteners, and verified level, solid floor surface.",
+    "keywords": ["floor", "boards", "oak", "rotted", "wood"]
+  },
+  {
+    "id": "flooring-repair-crossmember",
+    "category": "flooring",
+    "title": "Repair/replace floor cross member",
+    "description": "Repaired or replaced corroded/cracked floor cross member. Removed affected section, welded/installed new member, and verified structural integrity and proper floor support.",
+    "keywords": ["cross member", "crossmember", "support", "weld"]
+  },
+  {
+    "id": "flooring-reseal-floor",
+    "category": "flooring",
+    "title": "Reseal/coat floor",
+    "description": "Cleaned and resealed floor to protect against moisture and wear. Applied approved coating, verified full coverage, and allowed proper cure time.",
+    "keywords": ["seal", "coat", "undercoat", "moisture"]
+  },
+  {
+    "id": "refrigeration-service-reefer",
+    "category": "refrigeration",
+    "title": "Service reefer unit",
+    "description": "Performed scheduled service on refrigeration unit. Replaced filters, checked belts, inspected refrigerant charge, verified defrost operation, and confirmed unit holds set point temperature.",
+    "keywords": ["reefer", "refrigeration", "service", "pm", "thermo king", "carrier"]
+  },
+  {
+    "id": "refrigeration-recharge",
+    "category": "refrigeration",
+    "title": "Recover, evacuate and recharge refrigerant",
+    "description": "Recovered refrigerant, evacuated system, and recharged to specification. Leak tested system, verified proper operating pressures, and confirmed unit reaches and holds set point.",
+    "keywords": ["refrigerant", "recharge", "freon", "leak", "evacuate"]
+  },
+  {
+    "id": "refrigeration-replace-belt",
+    "category": "refrigeration",
+    "title": "Replace reefer drive belt",
+    "description": "Replaced worn/broken drive belt on refrigeration unit. Inspected pulleys and tensioner, set correct tension, and verified proper unit operation.",
+    "keywords": ["belt", "drive belt", "reefer", "tensioner"]
+  },
+  {
+    "id": "refrigeration-replace-fuel-filter",
+    "category": "refrigeration",
+    "title": "Replace reefer fuel filter",
+    "description": "Replaced fuel filter on refrigeration unit diesel engine. Primed fuel system, bled air, and verified proper engine start and operation.",
+    "keywords": ["fuel filter", "reefer", "diesel", "engine"]
+  },
+  {
+    "id": "frame-weld-crack",
+    "category": "frame",
+    "title": "Weld repair frame crack",
+    "description": "Repaired cracked frame/rail by grinding out crack and welding to restore integrity. Inspected surrounding area, reinforced as needed, and verified sound, structurally safe repair.",
+    "keywords": ["weld", "crack", "frame", "rail", "structural"]
+  },
+  {
+    "id": "frame-replace-crossmember",
+    "category": "frame",
+    "title": "Replace frame cross member",
+    "description": "Removed damaged/corroded frame cross member and installed replacement. Welded/bolted to specification, verified alignment, and confirmed structural integrity.",
+    "keywords": ["cross member", "frame", "weld", "structural"]
+  },
+  {
+    "id": "frame-repair-rub-rail",
+    "category": "frame",
+    "title": "Repair/replace rub rail",
+    "description": "Replaced damaged rub rail and mounting hardware. Straightened or replaced affected section, secured to frame, and verified proper protection of side wall.",
+    "keywords": ["rub rail", "side rail", "bent"]
+  },
+  {
+    "id": "frame-repair-mud-flap",
+    "category": "frame",
+    "title": "Replace mud flaps and hangers",
+    "description": "Replaced worn/missing mud flaps and damaged hangers/brackets. Secured to frame, verified proper height and coverage, and confirmed compliance.",
+    "keywords": ["mud flap", "splash guard", "hanger", "bracket"]
+  },
+  {
+    "id": "landing-gear-replace",
+    "category": "landing-gear",
+    "title": "Replace landing gear leg",
+    "description": "Removed and replaced damaged/bent landing gear leg. Aligned and matched to companion leg, lubricated gearing, and verified smooth, even raising and lowering through full travel.",
+    "keywords": ["landing gear", "leg", "dolly", "bent"]
+  },
+  {
+    "id": "landing-gear-repair-crank",
+    "category": "landing-gear",
+    "title": "Repair landing gear crank/gearbox",
+    "description": "Repaired landing gear crank handle and gearbox. Replaced worn gears/handle, lubricated mechanism, and verified smooth operation in high and low range.",
+    "keywords": ["crank", "handle", "gearbox", "landing gear"]
+  },
+  {
+    "id": "landing-gear-replace-foot",
+    "category": "landing-gear",
+    "title": "Replace landing gear foot/shoe",
+    "description": "Replaced damaged landing gear foot pad/shoe. Inspected leg for damage, installed new foot, and verified stable support and proper retraction.",
+    "keywords": ["foot", "shoe", "pad", "landing gear"]
+  },
+  {
+    "id": "kingpin-inspect",
+    "category": "kingpin-coupling",
+    "title": "Inspect/measure kingpin",
+    "description": "Inspected and measured kingpin for wear using gauge. Checked upper coupler plate for cracks and proper lubrication, and confirmed kingpin within wear specification for safe coupling.",
+    "keywords": ["kingpin", "king pin", "gauge", "wear", "upper coupler"]
+  },
+  {
+    "id": "kingpin-replace",
+    "category": "kingpin-coupling",
+    "title": "Replace kingpin",
+    "description": "Removed worn/damaged kingpin and installed replacement. Inspected upper coupler assembly, welded/secured per specification, and verified proper dimensions and safe coupling.",
+    "keywords": ["kingpin", "king pin", "replace", "weld"]
+  },
+  {
+    "id": "kingpin-lube-upper-coupler",
+    "category": "kingpin-coupling",
+    "title": "Lubricate upper coupler/fifth wheel plate",
+    "description": "Cleaned and lubricated upper coupler plate to ensure proper fifth wheel engagement. Inspected for cracks and wear, and applied approved grease.",
+    "keywords": ["upper coupler", "fifth wheel", "grease", "lube", "plate"]
+  },
+  {
+    "id": "misc-dot-inspection",
+    "category": "misc",
+    "title": "Annual DOT/FMCSA inspection",
+    "description": "Performed annual federal (DOT/FMCSA) inspection. Checked brakes, lights, tires, suspension, frame, coupling, and air system. Documented findings and affixed inspection sticker.",
+    "keywords": ["dot", "fmcsa", "annual", "inspection", "sticker"]
+  },
+  {
+    "id": "misc-pm-service",
+    "category": "misc",
+    "title": "Preventive maintenance (PM) service",
+    "description": "Performed preventive maintenance service. Lubricated all grease points, inspected brakes, tires, lights, and air system, checked fluid levels, and documented condition and recommendations.",
+    "keywords": ["pm", "preventive", "maintenance", "lube", "service"]
+  },
+  {
+    "id": "misc-pressure-wash",
+    "category": "misc",
+    "title": "Wash and clean trailer",
+    "description": "Pressure washed and cleaned trailer exterior/interior as requested. Removed buildup and debris and inspected for visible damage during cleaning.",
+    "keywords": ["wash", "clean", "pressure wash"]
+  },
+  {
+    "id": "misc-roadside-call",
+    "category": "misc",
+    "title": "Road service call",
+    "description": "Responded to road service call. Diagnosed reported issue on site, performed necessary repair to return unit to service, and verified safe operation. Includes travel/service time.",
+    "keywords": ["road service", "roadside", "call out", "mobile", "travel"]
+  }
+]
