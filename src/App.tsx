@@ -5,6 +5,7 @@ import { loadDescriptions, saveDescriptions, resetToSeed } from './lib/store'
 import SearchAutocomplete from './components/SearchAutocomplete'
 import CategoryGrid from './components/CategoryGrid'
 import QuickList from './components/QuickList'
+import QuickAdd from './components/QuickAdd'
 import Basket from './components/Basket'
 import Toast from './components/Toast'
 import ManageScreen from './components/manage/ManageScreen'
@@ -17,6 +18,7 @@ export default function App() {
   const [items, setItems] = useState<RepairDescription[]>(() => loadDescriptions())
   const [category, setCategory] = useState<string | null>(null)
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [showAdd, setShowAdd] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   const [view, setView] = useState<View>(
     () => (window.location.hash === '#manage' ? 'manage' : 'library'),
@@ -83,6 +85,12 @@ export default function App() {
     })
   }
 
+  function addDescription(entry: RepairDescription) {
+    updateItems([entry, ...items])
+    setCategory(entry.category)
+    showToast('Saved to library')
+  }
+
   function navigate(v: View) {
     window.location.hash = v === 'manage' ? '#manage' : ''
     setView(v)
@@ -115,9 +123,14 @@ export default function App() {
       <div className="topbar">
         <div className="topbar-row">
           <h1>Truck Repair Descriptions</h1>
-          <button className="nav-btn" onClick={() => navigate('manage')}>
-            Manage
-          </button>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button className="nav-btn" onClick={() => setShowAdd(true)}>
+              + Add
+            </button>
+            <button className="nav-btn" onClick={() => navigate('manage')}>
+              Manage
+            </button>
+          </div>
         </div>
         <SearchAutocomplete items={items} addedIds={selectedIds} onAdd={add} />
       </div>
@@ -139,6 +152,21 @@ export default function App() {
       </div>
 
       <QuickList items={listItems} addedIds={selectedIds} onToggle={toggle} />
+
+      <div className="add-here">
+        <button className="btn btn-ghost" onClick={() => setShowAdd(true)}>
+          {category ? `+ Add to ${categoryLabels[category]}` : '+ Add new repair'}
+        </button>
+      </div>
+
+      {showAdd && (
+        <QuickAdd
+          categories={categories}
+          defaultCategory={category}
+          onSave={addDescription}
+          onClose={() => setShowAdd(false)}
+        />
+      )}
 
       <Basket
         items={selectedItems}
