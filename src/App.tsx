@@ -124,7 +124,7 @@ export default function App() {
         <div className="topbar-row">
           <div className="brand">
             <img
-              src="/logo.png"
+              src="/logo.svg"
               alt=""
               className="brand-logo"
               onError={(e) => {
