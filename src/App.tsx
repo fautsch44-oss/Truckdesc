@@ -122,7 +122,17 @@ export default function App() {
     <div className="app">
       <div className="topbar">
         <div className="topbar-row">
-          <h1>Truck Repair Descriptions</h1>
+          <div className="brand">
+            <img
+              src="/logo.png"
+              alt=""
+              className="brand-logo"
+              onError={(e) => {
+                ;(e.currentTarget as HTMLImageElement).style.display = 'none'
+              }}
+            />
+            <h1>Truckdesc</h1>
+          </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button className="nav-btn" onClick={() => setShowAdd(true)}>
               + Add

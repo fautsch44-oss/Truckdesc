@@ -63,6 +63,22 @@ button {
   font-weight: 700;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-logo {
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+  background: #fff;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+
 .nav-btn {
   background: rgba(255, 255, 255, 0.16);
   color: #fff;
