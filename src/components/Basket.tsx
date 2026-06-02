@@ -23,7 +23,36 @@ function whatsappLink(number: string, text: string): string {
   return `${base}?text=${encodeURIComponent(text)}`
 }
 
-// Optional: import a contact from the phone (Android Chrome only).
+function money(n: number): string {
+  return Number.isInteger(n) ? String(n) : n.toFixed(2)
+}
+
+// Build the WhatsApp message from the truck name, each repair + its price,
+// and the total.
+function buildMessage(
+  truck: string,
+  items: RepairDescription[],
+  prices: Record<string, string>,
+): string {
+  const lines: string[] = []
+  if (truck.trim()) lines.push(`Truck: ${truck.trim()}`)
+  let total = 0
+  let hasPrice = false
+  for (const item of items) {
+    const raw = (prices[item.id] ?? '').trim()
+    const num = parseFloat(raw)
+    if (raw !== '' && !isNaN(num)) {
+      total += num
+      hasPrice = true
+      lines.push(`• ${item.description} - $${money(num)}`)
+    } else {
+      lines.push(`• ${item.description}`)
+    }
+  }
+  if (hasPrice) lines.push(`Total: $${money(total)}`)
+  return lines.join('\n')
+}
+
 const contactPickerSupported =
   typeof navigator !== 'undefined' &&
   'contacts' in navigator &&
@@ -31,7 +60,8 @@ const contactPickerSupported =
 
 export default function Basket({ items, onRemove, onClear, onToast }: BasketProps) {
   const [open, setOpen] = useState(false)
-  const [draft, setDraft] = useState('')
+  const [truck, setTruck] = useState('')
+  const [prices, setPrices] = useState<Record<string, string>>({})
   const [recipients, setRecipients] = useState<Recipient[]>(() => loadRecipients())
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [adding, setAdding] = useState(false)
@@ -40,21 +70,24 @@ export default function Basket({ items, onRemove, onClear, onToast }: BasketProp
 
   const sorted = sortRecipients(recipients)
 
-  const listText = items.map((i) => i.description).join('\n')
-
-  useEffect(() => {
-    if (open) setDraft(listText)
-  }, [open, listText])
-
   // Each time the panel opens, preselect the most-recurrent contact.
   useEffect(() => {
     if (open && sorted.length > 0) setSelectedId(sorted[0].id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
+  const total = items.reduce((sum, item) => {
+    const num = parseFloat((prices[item.id] ?? '').trim())
+    return sum + (isNaN(num) ? 0 : num)
+  }, 0)
+
   function persist(next: Recipient[]) {
     setRecipients(next)
     saveRecipients(next)
+  }
+
+  function setPrice(id: string, value: string) {
+    setPrices((prev) => ({ ...prev, [id]: value }))
   }
 
   function saveContact() {
@@ -78,7 +111,7 @@ export default function Basket({ items, onRemove, onClear, onToast }: BasketProp
         setAdding(true)
       }
     } catch {
-      // user cancelled or not supported
+      // user cancelled or unsupported
     }
   }
 
@@ -87,16 +120,26 @@ export default function Basket({ items, onRemove, onClear, onToast }: BasketProp
     if (selectedId === id) setSelectedId(null)
   }
 
+  // After sending, reset for the next truck: clear repairs, truck, prices.
+  function resetForNextTruck() {
+    onClear()
+    setTruck('')
+    setPrices({})
+    setOpen(false)
+  }
+
   function sendWhatsApp() {
-    const text = draft.trim()
+    const text = buildMessage(truck, items, prices).trim()
     if (!text) return
     const recipient = recipients.find((r) => r.id === selectedId)
     window.open(whatsappLink(recipient?.number ?? '', text), '_blank')
     if (recipient) persist(recordSend(recipients, recipient.id))
+    resetForNextTruck()
+    onToast('Sent — ready for next truck')
   }
 
   async function copyAll() {
-    const ok = await copyText(draft.trim())
+    const ok = await copyText(buildMessage(truck, items, prices).trim())
     if (ok) onToast('Copied to clipboard')
   }
 
@@ -115,33 +158,55 @@ export default function Basket({ items, onRemove, onClear, onToast }: BasketProp
         <div className="sheet-overlay" onClick={() => setOpen(false)}>
           <div className="sheet" onClick={(e) => e.stopPropagation()}>
             <div className="sheet-head">
-              <h2>Selected repairs ({items.length})</h2>
+              <h2>Invoice ({items.length})</h2>
               <button className="link-btn dark" onClick={() => setOpen(false)}>
                 Close
               </button>
             </div>
 
-            <div className="chip-list">
-              {items.map((i) => (
-                <span className="sel-chip" key={i.id}>
-                  {i.title}
+            <div className="field">
+              <label>Truck / Unit</label>
+              <input
+                value={truck}
+                onChange={(e) => setTruck(e.target.value)}
+                placeholder="e.g. Unit 1234 / plate"
+              />
+            </div>
+
+            <label className="field-label">Repairs &amp; price</label>
+            <div className="line-items">
+              {items.map((item) => (
+                <div className="line-item" key={item.id}>
+                  <span className="line-desc">{item.description}</span>
+                  <div className="line-price">
+                    <span className="line-price-sign">$</span>
+                    <input
+                      type="number"
+                      inputMode="decimal"
+                      min="0"
+                      step="0.01"
+                      placeholder="0"
+                      value={prices[item.id] ?? ''}
+                      onChange={(e) => setPrice(item.id, e.target.value)}
+                    />
+                  </div>
                   <button
                     className="sel-chip-x"
-                    onClick={() => onRemove(i.id)}
-                    aria-label={`Remove ${i.title}`}
+                    onClick={() => onRemove(item.id)}
+                    aria-label={`Remove ${item.title}`}
                   >
                     ×
                   </button>
-                </span>
+                </div>
               ))}
             </div>
 
-            <label className="field-label">Message (you can edit before sending)</label>
-            <textarea
-              className="sheet-textarea"
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-            />
+            {total > 0 && (
+              <div className="total-row">
+                <span>Total</span>
+                <strong>${money(total)}</strong>
+              </div>
+            )}
 
             <label className="field-label">Send to</label>
             {sorted.length > 0 && (
@@ -210,18 +275,12 @@ export default function Basket({ items, onRemove, onClear, onToast }: BasketProp
 
             <div className="sheet-actions">
               <button className="btn btn-send" onClick={sendWhatsApp}>
-                Send by WhatsApp
+                Send &amp; next truck
               </button>
               <button className="btn btn-ghost" onClick={copyAll}>
                 Copy text
               </button>
-              <button
-                className="btn btn-ghost"
-                onClick={() => {
-                  onClear()
-                  setOpen(false)
-                }}
-              >
+              <button className="btn btn-ghost" onClick={resetForNextTruck}>
                 Clear all
               </button>
             </div>
