@@ -201,6 +201,98 @@
       color: var(--muted);
     }
 
+    /* ---------- Catalog / search ---------- */
+    .catalog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .catalog-head .card-title { margin: 0; }
+    .cat-count {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      background: #0c1424;
+      border: 1px solid var(--line);
+      padding: 4px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .cat-count b { color: var(--amber); }
+
+    .search-wrap { position: relative; }
+    .search-input {
+      font-size: 16px;
+      padding: 14px 14px 14px 42px;
+    }
+    .search-wrap::before {
+      content: "🔍";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      font-size: 16px;
+      opacity: 0.75;
+      pointer-events: none;
+    }
+    .search-results {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0;
+      max-height: 320px;
+      overflow-y: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: #0c1424;
+      display: none;
+    }
+    .search-results.show { display: block; }
+    .search-item {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--line);
+      transition: background 0.12s ease;
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover, .search-item.active { background: var(--surface-2); }
+    .si-main { min-width: 0; }
+    .si-part { font-weight: 800; font-size: 14.5px; }
+    .si-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .si-brand { color: var(--amber); font-weight: 700; }
+    .si-price {
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .si-add {
+      font-size: 22px;
+      line-height: 1;
+      color: var(--amber);
+      font-weight: 800;
+    }
+    .search-empty { padding: 16px 14px; color: var(--muted); font-size: 13.5px; }
+
+    .catalog-tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .btn-sm { padding: 9px 14px; font-size: 13.5px; }
+    .src-tag { color: #6b7d99; font-size: 11px; }
+
     /* ---------- Line items ---------- */
     .lines-head {
       display: flex;
@@ -409,6 +501,25 @@
       <button class="btn btn-ghost" id="btnNueva" type="button">＋ Nueva cotización</button>
     </header>
 
+    <!-- Catalog search -->
+    <section class="card">
+      <div class="catalog-head">
+        <h2 class="card-title">Buscar en catálogo</h2>
+        <span class="cat-count" id="catCount">Catálogo: <b>0</b> partes</span>
+      </div>
+      <div class="search-wrap">
+        <input id="search" class="search-input" type="search" placeholder="Busca por número de parte, marca o descripción…" autocomplete="off" />
+        <ul class="search-results" id="searchResults"></ul>
+      </div>
+      <div class="catalog-tools">
+        <button class="btn btn-ghost btn-sm" id="btnImport" type="button">⬆️ Importar catálogo (CSV)</button>
+        <button class="btn btn-ghost btn-sm" id="btnExport" type="button">⬇️ Exportar catálogo</button>
+        <button class="btn btn-ghost btn-sm" id="btnPlantilla" type="button">📄 Plantilla CSV</button>
+        <input id="fileImport" type="file" accept=".csv,text/csv" style="display:none" />
+      </div>
+      <p class="form-hint">Carga tu propia lista de precios en CSV (columnas: <code>numParte, marca, descripcion, categoria, precio</code>) para tener miles de partes con precios reales. Tu catálogo se guarda en este dispositivo.</p>
+    </section>
+
     <!-- Capture form -->
     <section class="card">
       <h2 class="card-title">Agregar refacción</h2>
@@ -471,9 +582,10 @@
   <script>
     'use strict';
 
-    // ---------- Catálogo semilla (refacciones HD diésel comunes) ----------
-    // Precios USD de ejemplo, estimados y editables en pantalla.
-    const CATALOGO = [
+    // ---------- Catálogo base (refacciones HD diésel) ----------
+    // Precios USD basados en listados públicos de tiendas en línea; varían por
+    // vendedor y fecha. Editables en pantalla. Importa tu propia lista para ampliar.
+    const CATALOGO_BASE = [
       { numParte: '4385386',   marca: 'Cummins',        descripcion: 'Kit de juntas superior ISX15',           precio: 289.0 },
       { numParte: '3680859',   marca: 'Cummins',        descripcion: 'Sensor de presión de riel ISX',          precio: 142.5 },
       { numParte: '4359121',   marca: 'Cummins',        descripcion: 'Bomba de agua ISX15',                    precio: 318.0 },
@@ -500,13 +612,48 @@
       { numParte: '4955413',   marca: 'Cummins',        descripcion: 'Termostato ISX (180°F)',                 precio: 28.5 }
     ];
 
-    const CATALOGO_INDEX = (() => {
-      const m = new Map();
-      for (const p of CATALOGO) m.set(p.numParte.toUpperCase(), p);
-      return m;
-    })();
-
     const STORAGE_KEY = 'cotizadorDiesel.lineas';
+    const CATALOG_KEY = 'cotizadorDiesel.catalogo';
+
+    // Catálogo efectivo = base + importado por el usuario (importado tiene prioridad
+    // por número de parte). Se reconstruye al importar.
+    let CATALOGO = [];
+    let CATALOGO_INDEX = new Map();
+
+    function cargarImportado() {
+      try {
+        const raw = localStorage.getItem(CATALOG_KEY);
+        const data = raw ? JSON.parse(raw) : [];
+        return Array.isArray(data) ? data : [];
+      } catch { return []; }
+    }
+    function guardarImportado(arr) {
+      try { localStorage.setItem(CATALOG_KEY, JSON.stringify(arr)); } catch {}
+    }
+
+    function reconstruirCatalogo() {
+      const importado = cargarImportado();
+      const m = new Map();
+      for (const p of CATALOGO_BASE) m.set(String(p.numParte).toUpperCase(), normalizarParte(p));
+      for (const p of importado) {
+        const key = String(p.numParte || '').toUpperCase();
+        if (key) m.set(key, normalizarParte(p));
+      }
+      CATALOGO_INDEX = m;
+      CATALOGO = [...m.values()];
+      actualizarCatalogoUI();
+    }
+
+    function normalizarParte(p) {
+      return {
+        numParte: String(p.numParte || '').trim(),
+        marca: String(p.marca || '').trim(),
+        descripcion: String(p.descripcion || '').trim(),
+        categoria: String(p.categoria || '').trim(),
+        precio: Math.max(0, Number(p.precio) || 0),
+        fuente: String(p.fuente || '').trim(),
+      };
+    }
 
     // ---------- Estado ----------
     /** @type {{id:string,numParte:string,marca:string,descripcion:string,cantidad:number,precio:number}[]} */
@@ -551,14 +698,20 @@
     const $lines = document.getElementById('lines');
     const $count = document.getElementById('countPill');
     const $total = document.getElementById('totalValue');
+    const $search = document.getElementById('search');
+    const $results = document.getElementById('searchResults');
+    const $catCount = document.getElementById('catCount');
+    const $datalist = document.getElementById('catalogoList');
 
-    // ---------- Datalist del catálogo ----------
-    (function poblarDatalist() {
-      const dl = document.getElementById('catalogoList');
-      dl.innerHTML = CATALOGO
-        .map((p) => `<option value="${p.numParte}">${p.marca} — ${p.descripcion}</option>`)
+    // ---------- UI del catálogo (datalist + contador) ----------
+    function actualizarCatalogoUI() {
+      // El datalist solo necesita una muestra para no saturar el navegador.
+      const muestra = CATALOGO.slice(0, 1200);
+      $datalist.innerHTML = muestra
+        .map((p) => `<option value="${esc(p.numParte)}">${esc(p.marca)}${p.descripcion ? ' — ' + esc(p.descripcion) : ''}</option>`)
         .join('');
-    })();
+      if ($catCount) $catCount.innerHTML = `Catálogo: <b>${CATALOGO.length.toLocaleString('es-MX')}</b> partes`;
+    }
 
     // Autollenado al capturar un número de parte del catálogo
     function autollenarDesdeCatalogo() {
@@ -571,6 +724,215 @@
     }
     $numParte.addEventListener('input', () => { delete $numParte.dataset.desc; autollenarDesdeCatalogo(); });
     $numParte.addEventListener('change', autollenarDesdeCatalogo);
+
+    // ---------- Buscador del catálogo ----------
+    function normalizar(s) {
+      return String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+
+    function buscar(q) {
+      const terms = normalizar(q).split(/\s+/).filter(Boolean);
+      if (terms.length === 0) return [];
+      const res = [];
+      for (const p of CATALOGO) {
+        const hay = normalizar(`${p.numParte} ${p.marca} ${p.descripcion} ${p.categoria}`);
+        if (terms.every((t) => hay.includes(t))) {
+          res.push(p);
+          if (res.length >= 25) break;
+        }
+      }
+      return res;
+    }
+
+    function renderResultados(items, q) {
+      if (!q.trim()) { $results.classList.remove('show'); $results.innerHTML = ''; return; }
+      if (items.length === 0) {
+        $results.innerHTML = `<li class="search-empty">Sin coincidencias en el catálogo. Puedes capturarla manualmente abajo.</li>`;
+        $results.classList.add('show');
+        return;
+      }
+      $results.innerHTML = items.map((p, i) => `
+        <li class="search-item${i === 0 ? ' active' : ''}" data-part="${esc(p.numParte)}">
+          <div class="si-main">
+            <div class="si-part">${esc(p.numParte) || '(sin número)'}</div>
+            <div class="si-sub"><span class="si-brand">${esc(p.marca)}</span>${p.marca && p.descripcion ? ' · ' : ''}${esc(p.descripcion)}</div>
+          </div>
+          <div class="si-price">${formatoUSD(p.precio)}</div>
+          <div class="si-add" aria-hidden="true">＋</div>
+        </li>`).join('');
+      $results.classList.add('show');
+    }
+
+    let resultadosActuales = [];
+    $search.addEventListener('input', () => {
+      resultadosActuales = buscar($search.value);
+      renderResultados(resultadosActuales, $search.value);
+    });
+    $search.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && resultadosActuales.length > 0) {
+        e.preventDefault();
+        agregarDesdeCatalogo(resultadosActuales[0]);
+        $search.value = '';
+        renderResultados([], '');
+      } else if (e.key === 'Escape') {
+        $search.value = '';
+        renderResultados([], '');
+      }
+    });
+    $results.addEventListener('click', (e) => {
+      const li = e.target.closest('.search-item');
+      if (!li) return;
+      const p = CATALOGO_INDEX.get(li.dataset.part.toUpperCase());
+      if (p) agregarDesdeCatalogo(p);
+      $search.value = '';
+      renderResultados([], '');
+      $search.focus();
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-wrap')) $results.classList.remove('show');
+    });
+
+    function agregarDesdeCatalogo(p) {
+      lineas.push({
+        id: uid(),
+        numParte: p.numParte,
+        marca: p.marca,
+        descripcion: p.descripcion,
+        cantidad: 1,
+        precio: p.precio,
+      });
+      render();
+      toast('Agregado: ' + (p.numParte || p.marca));
+    }
+
+    // ---------- Importar / exportar catálogo (CSV) ----------
+    function parseCSV(text) {
+      const rows = [];
+      let row = [], field = '', inQ = false;
+      text = text.replace(/^﻿/, ''); // quitar BOM
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQ) {
+          if (c === '"') {
+            if (text[i + 1] === '"') { field += '"'; i++; }
+            else inQ = false;
+          } else field += c;
+        } else if (c === '"') inQ = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r') { /* ignore */ }
+        else field += c;
+      }
+      if (field !== '' || row.length > 0) { row.push(field); rows.push(row); }
+      return rows.filter((r) => r.some((c) => String(c).trim() !== ''));
+    }
+
+    function parsePrecio(v) {
+      let s = String(v).replace(/[^0-9.,-]/g, '').trim();
+      if (s.includes(',') && s.includes('.')) s = s.replace(/,/g, '');      // 1,234.56
+      else if (s.includes(',') && !s.includes('.')) s = s.replace(',', '.'); // 1234,56
+      const n = parseFloat(s);
+      return isNaN(n) ? 0 : Math.max(0, n);
+    }
+
+    const HEADER_MAP = {
+      numparte: 'numParte', parte: 'numParte', partnumber: 'numParte', part: 'numParte',
+      partno: 'numParte', sku: 'numParte', numerodeparte: 'numParte', nodeparte: 'numParte',
+      marca: 'marca', brand: 'marca', fabricante: 'marca', manufacturer: 'marca',
+      descripcion: 'descripcion', description: 'descripcion', desc: 'descripcion', nombre: 'descripcion',
+      categoria: 'categoria', category: 'categoria', sistema: 'categoria',
+      precio: 'precio', price: 'precio', costo: 'precio', cost: 'precio', importe: 'precio',
+      preciounitario: 'precio', unitprice: 'precio',
+      fuente: 'fuente', source: 'fuente',
+    };
+    const COLS_DEFECTO = ['numParte', 'marca', 'descripcion', 'categoria', 'precio'];
+
+    function filasACatalogo(rows) {
+      if (rows.length === 0) return [];
+      const headRaw = rows[0].map((h) => normalizar(h).replace(/[^a-z0-9]/g, ''));
+      const tieneHeader = headRaw.some((h) => HEADER_MAP[h]);
+      let cols, dataRows;
+      if (tieneHeader) {
+        cols = headRaw.map((h) => HEADER_MAP[h] || null);
+        dataRows = rows.slice(1);
+      } else {
+        cols = COLS_DEFECTO;
+        dataRows = rows;
+      }
+      const out = [];
+      for (const r of dataRows) {
+        const obj = { numParte: '', marca: '', descripcion: '', categoria: '', precio: 0, fuente: 'importado' };
+        cols.forEach((field, idx) => {
+          if (!field) return;
+          const val = r[idx] != null ? String(r[idx]).trim() : '';
+          if (field === 'precio') obj.precio = parsePrecio(val);
+          else obj[field] = val;
+        });
+        if (obj.numParte || obj.marca || obj.descripcion) out.push(obj);
+      }
+      return out;
+    }
+
+    document.getElementById('btnImport').addEventListener('click', () => {
+      document.getElementById('fileImport').click();
+    });
+    document.getElementById('fileImport').addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const nuevas = filasACatalogo(parseCSV(String(reader.result)));
+          if (nuevas.length === 0) { toast('No se encontraron partes en el CSV'); return; }
+          // Mezclar con lo ya importado (las nuevas tienen prioridad por número de parte)
+          const prev = cargarImportado();
+          const m = new Map();
+          for (const p of prev) m.set(String(p.numParte || '').toUpperCase() + '|' + normalizar(p.descripcion), p);
+          for (const p of nuevas) m.set(String(p.numParte || '').toUpperCase() + '|' + normalizar(p.descripcion), p);
+          const merged = [...m.values()];
+          guardarImportado(merged);
+          reconstruirCatalogo();
+          toast(`${nuevas.length.toLocaleString('es-MX')} partes importadas`);
+        } catch {
+          toast('No se pudo leer el CSV');
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    });
+
+    function csvEscape(v) {
+      const s = String(v == null ? '' : v);
+      return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+    function descargar(nombre, contenido, tipo) {
+      const blob = new Blob([contenido], { type: tipo || 'text/csv;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = nombre;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    document.getElementById('btnExport').addEventListener('click', () => {
+      const header = ['numParte', 'marca', 'descripcion', 'categoria', 'precio', 'fuente'];
+      const lineasCsv = [header.join(',')];
+      for (const p of CATALOGO) {
+        lineasCsv.push([p.numParte, p.marca, p.descripcion, p.categoria, p.precio, p.fuente].map(csvEscape).join(','));
+      }
+      descargar('catalogo-diesel.csv', '﻿' + lineasCsv.join('\n'));
+      toast('Catálogo exportado');
+    });
+
+    document.getElementById('btnPlantilla').addEventListener('click', () => {
+      const ejemplo = [
+        'numParte,marca,descripcion,categoria,precio',
+        'LF9009,Fleetguard,Filtro de aceite,Filtros,24.95',
+        '4385386,Cummins,Kit de juntas superior ISX15,Motor,289.00',
+      ].join('\n');
+      descargar('plantilla-catalogo.csv', '﻿' + ejemplo);
+      toast('Plantilla descargada');
+    });
 
     // ---------- Render ----------
     function render() {
@@ -753,6 +1115,7 @@
     });
 
     // ---------- Init ----------
+    reconstruirCatalogo();
     render();
   </script>
 </body>
