@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Cotizador de refacciones diésel heavy-duty: captura número de parte, marca, cantidad y obtén el total estimado en USD." />
+  <title>Cotizador Diésel HD — Refacciones Heavy-Duty</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-grad-a: #0f172a;
+      --bg-grad-b: #0b1120;
+      --surface: #111c30;
+      --surface-2: #16233b;
+      --line: #24344f;
+      --text: #e8eef7;
+      --muted: #93a4bd;
+      --amber: #f6b21b;
+      --amber-dark: #d99708;
+      --amber-soft: rgba(246, 178, 27, 0.12);
+      --green: #16a34a;
+      --green-dark: #128a3e;
+      --danger: #ef4444;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1100px 600px at 15% -10%, #16223a 0%, transparent 60%),
+        radial-gradient(900px 500px at 110% 0%, #1a2740 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg-grad-a), var(--bg-grad-b));
+      background-attachment: fixed;
+      min-height: 100vh;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 16px 120px;
+    }
+
+    /* ---------- Header ---------- */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 0 22px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+    .brand-mark {
+      flex: none;
+      width: 52px;
+      height: 52px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      background: linear-gradient(160deg, var(--amber), var(--amber-dark));
+      box-shadow: 0 10px 24px -8px rgba(246, 178, 27, 0.6);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.3px;
+      line-height: 1.1;
+    }
+    .brand p {
+      margin: 3px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.04s ease, filter 0.15s ease, background 0.15s ease;
+      color: #0b1120;
+      white-space: nowrap;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-amber { background: linear-gradient(160deg, var(--amber), var(--amber-dark)); }
+    .btn-amber:hover { filter: brightness(1.05); }
+    .btn-green { background: linear-gradient(160deg, #22c55e, var(--green)); color: #042311; }
+    .btn-green:hover { filter: brightness(1.05); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .btn-ghost:hover { background: var(--surface-2); }
+    .btn-block { width: 100%; }
+
+    /* ---------- Cards ---------- */
+    .card {
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 0 0 14px;
+    }
+    .card-title::before {
+      content: "";
+      width: 8px;
+      height: 18px;
+      border-radius: 3px;
+      background: var(--amber);
+      box-shadow: 0 0 12px rgba(246, 178, 27, 0.6);
+    }
+
+    /* ---------- Form ---------- */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 0.7fr 0.9fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .field label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    input {
+      width: 100%;
+      background: #0c1424;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      padding: 12px 12px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    input::placeholder { color: #5d6f8c; }
+    input:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px var(--amber-soft);
+    }
+    /* hide number spinners for a cleaner look */
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+
+    .input-money { position: relative; }
+    .input-money input { padding-left: 26px; }
+    .input-money::before {
+      content: "$";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--amber);
+      font-weight: 800;
+      pointer-events: none;
+    }
+
+    .form-hint {
+      margin: 12px 2px 0;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* ---------- Line items ---------- */
+    .lines-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 4px 2px 12px;
+      flex-wrap: wrap;
+    }
+    .lines-head h2 { margin: 0; font-size: 17px; }
+    .count-pill {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--amber);
+      background: var(--amber-soft);
+      border: 1px solid rgba(246, 178, 27, 0.35);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .lines { display: flex; flex-direction: column; gap: 10px; }
+
+    .line {
+      display: grid;
+      grid-template-columns: 1.5fr 0.7fr 0.95fr 0.95fr auto;
+      gap: 10px;
+      align-items: center;
+      background: #0c1424;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 12px 12px;
+    }
+    .line-main { min-width: 0; }
+    .line-part {
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .line-sub {
+      margin-top: 2px;
+      font-size: 12.5px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .line-brand-tag {
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .line-label { display: none; }
+
+    .line input { padding: 9px 10px; font-size: 14px; text-align: right; }
+    .line .input-money input { text-align: right; }
+
+    .line-subtotal {
+      text-align: right;
+      font-weight: 800;
+      font-size: 15px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .line-x {
+      appearance: none;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .line-x:hover { background: rgba(239, 68, 68, 0.14); color: var(--danger); }
+
+    .empty {
+      text-align: center;
+      padding: 34px 16px;
+      color: var(--muted);
+      border: 1.5px dashed var(--line);
+      border-radius: var(--radius-sm);
+    }
+    .empty .ico { font-size: 34px; display: block; margin-bottom: 8px; opacity: 0.8; }
+
+    /* ---------- Total / footer bar ---------- */
+    .totalbar {
+      position: sticky;
+      bottom: 0;
+      margin-top: 18px;
+      background: linear-gradient(180deg, rgba(17, 28, 48, 0.92), rgba(11, 17, 32, 0.98));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 18px;
+      backdrop-filter: blur(8px);
+    }
+    .total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .total-label {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .total-amount {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--amber);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.5px;
+    }
+    .total-amount .cur { font-size: 15px; color: var(--muted); font-weight: 700; margin-left: 6px; }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .disclaimer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin: 22px 0 0;
+    }
+
+    /* ---------- Toast ---------- */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%) translateY(20px);
+      background: #0c1424;
+      border: 1px solid var(--amber);
+      color: var(--text);
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 50;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 720px) {
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .form-grid .field-part { grid-column: 1 / -1; }
+      .form-grid .field-add { grid-column: 1 / -1; }
+      .form-grid .btn-block { width: 100%; }
+
+      .line {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 10px;
+      }
+      .line-main { grid-column: 1 / -1; }
+      .line-label {
+        display: block;
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--muted);
+        margin-bottom: 4px;
+        font-weight: 700;
+      }
+      .line-cell-sub { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; }
+      .line-subtotal { font-size: 18px; }
+      .line-x { grid-row: 1; grid-column: 2; justify-self: end; }
+      .line-main { order: -1; }
+
+      .actions { grid-template-columns: 1fr; }
+      .total-amount { font-size: 26px; }
+    }
+
+    @media (max-width: 380px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">🛠️</div>
+        <div>
+          <h1>Cotizador Diésel HD</h1>
+          <p>Refacciones Heavy-Duty · USD</p>
+        </div>
+      </div>
+      <button class="btn btn-ghost" id="btnNueva" type="button">＋ Nueva cotización</button>
+    </header>
+
+    <!-- Capture form -->
+    <section class="card">
+      <h2 class="card-title">Agregar refacción</h2>
+      <form id="formAdd" autocomplete="off">
+        <div class="form-grid">
+          <div class="field field-part">
+            <label for="numParte">Número de parte</label>
+            <input id="numParte" list="catalogoList" placeholder="Ej. 4385386" />
+            <datalist id="catalogoList"></datalist>
+          </div>
+          <div class="field">
+            <label for="marca">Marca</label>
+            <input id="marca" placeholder="Ej. Cummins" />
+          </div>
+          <div class="field">
+            <label for="cantidad">Cantidad</label>
+            <input id="cantidad" type="number" inputmode="numeric" min="1" step="1" value="1" />
+          </div>
+          <div class="field">
+            <label for="precio">Precio unit. (USD)</label>
+            <div class="input-money">
+              <input id="precio" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" />
+            </div>
+          </div>
+          <div class="field field-add">
+            <button class="btn btn-amber btn-block" type="submit">Agregar</button>
+          </div>
+        </div>
+      </form>
+      <p class="form-hint">💡 Escribe un número de parte del catálogo y se autollenan marca, descripción y precio (editables). Si no está en el catálogo, captúralo manualmente.</p>
+    </section>
+
+    <!-- Line items -->
+    <section class="card">
+      <div class="lines-head">
+        <h2>Cotización</h2>
+        <span class="count-pill" id="countPill">0 partidas</span>
+      </div>
+      <div class="lines" id="lines"></div>
+    </section>
+
+    <!-- Sticky total + actions -->
+    <section class="totalbar">
+      <div class="total-row">
+        <span class="total-label">Total estimado</span>
+        <span class="total-amount"><span id="totalValue">$0.00</span><span class="cur">USD</span></span>
+      </div>
+      <div class="actions">
+        <button class="btn btn-green" id="btnEnviar" type="button">📲 Enviar</button>
+        <button class="btn btn-amber" id="btnCopiar" type="button">📋 Copiar</button>
+        <button class="btn btn-ghost" id="btnLimpiar" type="button">🗑️ Limpiar</button>
+      </div>
+    </section>
+
+    <p class="disclaimer">Precios del catálogo son estimados y editables. La cotización no constituye una factura.</p>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    'use strict';
+
+    // ---------- Catálogo semilla (refacciones HD diésel comunes) ----------
+    // Precios USD de ejemplo, estimados y editables en pantalla.
+    const CATALOGO = [
+      { numParte: '4385386',   marca: 'Cummins',        descripcion: 'Kit de juntas superior ISX15',           precio: 289.0 },
+      { numParte: '3680859',   marca: 'Cummins',        descripcion: 'Sensor de presión de riel ISX',          precio: 142.5 },
+      { numParte: '4359121',   marca: 'Cummins',        descripcion: 'Bomba de agua ISX15',                    precio: 318.0 },
+      { numParte: 'EA4720940',  marca: 'Detroit Diesel', descripcion: 'Inyector DD15 reman',                   precio: 612.0 },
+      { numParte: 'A4721501477', marca: 'Detroit Diesel', descripcion: 'Sensor NOx posterior DD13/DD15',        precio: 398.0 },
+      { numParte: '23532333',  marca: 'Detroit Diesel', descripcion: 'Turbo cartucho Series 60',               precio: 845.0 },
+      { numParte: 'LF9009',    marca: 'Fleetguard',     descripcion: 'Filtro de aceite Venturi',               precio: 24.9 },
+      { numParte: 'FS1280',    marca: 'Fleetguard',     descripcion: 'Separador combustible/agua',             precio: 31.5 },
+      { numParte: 'AF25962',   marca: 'Fleetguard',     descripcion: 'Filtro de aire primario',                precio: 46.0 },
+      { numParte: 'P551712',   marca: 'Donaldson',      descripcion: 'Filtro de aceite lube',                  precio: 22.75 },
+      { numParte: 'P181050',   marca: 'Donaldson',      descripcion: 'Filtro de aire Radialseal',              precio: 58.0 },
+      { numParte: '0445120231', marca: 'Bosch',         descripcion: 'Inyector common-rail',                   precio: 274.0 },
+      { numParte: '0280158168', marca: 'Bosch',         descripcion: 'Válvula reguladora de presión',          precio: 96.0 },
+      { numParte: 'K087917',   marca: 'Bendix',         descripcion: 'Compresor de aire reman',                precio: 489.0 },
+      { numParte: 'OR278977',  marca: 'Bendix',         descripcion: 'Kit válvula reguladora gobernador',      precio: 64.0 },
+      { numParte: '5040397',   marca: 'Gates',          descripcion: 'Banda micro-V serpentina',               precio: 38.5 },
+      { numParte: '24536',     marca: 'Gates',          descripcion: 'Manguera radiador superior',             precio: 27.0 },
+      { numParte: '89630',     marca: 'Dayco',          descripcion: 'Tensor de banda automático',             precio: 71.0 },
+      { numParte: 'S-19367',   marca: 'Wabco',          descripcion: 'Válvula relé ABS',                       precio: 118.0 },
+      { numParte: '4324130010', marca: 'Wabco',         descripcion: 'Secador de aire System Saver',           precio: 256.0 },
+      { numParte: '393-7090',  marca: 'Stemco',         descripcion: 'Sello de maza Guardian',                 precio: 19.95 },
+      { numParte: '599-1006',  marca: 'Stemco',         descripcion: 'Tapón de maza Sentinel',                 precio: 14.5 },
+      { numParte: 'R23507769', marca: 'Detroit Diesel', descripcion: 'Termostato Series 60',                   precio: 33.0 },
+      { numParte: '4955413',   marca: 'Cummins',        descripcion: 'Termostato ISX (180°F)',                 precio: 28.5 }
+    ];
+
+    const CATALOGO_INDEX = (() => {
+      const m = new Map();
+      for (const p of CATALOGO) m.set(p.numParte.toUpperCase(), p);
+      return m;
+    })();
+
+    const STORAGE_KEY = 'cotizadorDiesel.lineas';
+
+    // ---------- Estado ----------
+    /** @type {{id:string,numParte:string,marca:string,descripcion:string,cantidad:number,precio:number}[]} */
+    let lineas = cargar();
+
+    // ---------- Utilidades ----------
+    const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+    function formatoUSD(n) { return usd.format(Number.isFinite(n) ? n : 0); }
+
+    function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+    function cargar() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        const data = JSON.parse(raw);
+        return Array.isArray(data) ? data : [];
+      } catch { return []; }
+    }
+
+    function guardar() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(lineas)); } catch {}
+    }
+
+    function subtotal(l) { return (Number(l.cantidad) || 0) * (Number(l.precio) || 0); }
+    function totalGeneral() { return lineas.reduce((s, l) => s + subtotal(l), 0); }
+
+    let toastTimer = null;
+    function toast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+    }
+
+    // ---------- DOM refs ----------
+    const $numParte = document.getElementById('numParte');
+    const $marca = document.getElementById('marca');
+    const $cantidad = document.getElementById('cantidad');
+    const $precio = document.getElementById('precio');
+    const $lines = document.getElementById('lines');
+    const $count = document.getElementById('countPill');
+    const $total = document.getElementById('totalValue');
+
+    // ---------- Datalist del catálogo ----------
+    (function poblarDatalist() {
+      const dl = document.getElementById('catalogoList');
+      dl.innerHTML = CATALOGO
+        .map((p) => `<option value="${p.numParte}">${p.marca} — ${p.descripcion}</option>`)
+        .join('');
+    })();
+
+    // Autollenado al capturar un número de parte del catálogo
+    function autollenarDesdeCatalogo() {
+      const key = $numParte.value.trim().toUpperCase();
+      const hit = CATALOGO_INDEX.get(key);
+      if (!hit) return;
+      if (!$marca.value.trim()) $marca.value = hit.marca;
+      if (!$precio.value.trim()) $precio.value = hit.precio;
+      $numParte.dataset.desc = hit.descripcion;
+    }
+    $numParte.addEventListener('input', () => { delete $numParte.dataset.desc; autollenarDesdeCatalogo(); });
+    $numParte.addEventListener('change', autollenarDesdeCatalogo);
+
+    // ---------- Render ----------
+    function render() {
+      if (lineas.length === 0) {
+        $lines.innerHTML = `
+          <div class="empty">
+            <span class="ico">📦</span>
+            Aún no hay refacciones. Agrega la primera arriba.
+          </div>`;
+      } else {
+        $lines.innerHTML = lineas.map(renderLinea).join('');
+      }
+
+      const n = lineas.length;
+      $count.textContent = n === 1 ? '1 partida' : `${n} partidas`;
+      $total.textContent = formatoUSD(totalGeneral());
+      guardar();
+    }
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, (c) => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+      ));
+    }
+
+    function renderLinea(l) {
+      const brand = l.marca ? `<span class="line-brand-tag">${esc(l.marca)}</span>` : '';
+      return `
+        <div class="line" data-id="${l.id}">
+          <div class="line-main">
+            <div class="line-part">${esc(l.numParte) || '(sin número)'}</div>
+            <div class="line-sub">${brand}${l.marca && l.descripcion ? ' · ' : ''}${l.descripcion ? esc(l.descripcion) : ''}</div>
+          </div>
+          <div>
+            <span class="line-label">Cantidad</span>
+            <input type="number" inputmode="numeric" min="1" step="1" value="${l.cantidad}" data-field="cantidad" aria-label="Cantidad" />
+          </div>
+          <div>
+            <span class="line-label">Precio unit.</span>
+            <div class="input-money">
+              <input type="number" inputmode="decimal" min="0" step="0.01" value="${l.precio}" data-field="precio" aria-label="Precio unitario" />
+            </div>
+          </div>
+          <div class="line-cell-sub">
+            <span class="line-label">Subtotal</span>
+            <span class="line-subtotal">${formatoUSD(subtotal(l))}</span>
+          </div>
+          <button class="line-x" type="button" data-action="quitar" aria-label="Quitar partida">×</button>
+        </div>`;
+    }
+
+    // ---------- Eventos de líneas (delegación) ----------
+    $lines.addEventListener('input', (e) => {
+      const input = e.target.closest('input[data-field]');
+      if (!input) return;
+      const row = input.closest('.line');
+      const l = lineas.find((x) => x.id === row.dataset.id);
+      if (!l) return;
+      const field = input.dataset.field;
+      l[field] = field === 'cantidad'
+        ? Math.max(0, parseInt(input.value, 10) || 0)
+        : Math.max(0, parseFloat(input.value) || 0);
+      // Actualiza subtotal y total sin re-render completo (preserva foco)
+      row.querySelector('.line-subtotal').textContent = formatoUSD(subtotal(l));
+      $total.textContent = formatoUSD(totalGeneral());
+      guardar();
+    });
+
+    $lines.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action="quitar"]');
+      if (!btn) return;
+      const id = btn.closest('.line').dataset.id;
+      lineas = lineas.filter((x) => x.id !== id);
+      render();
+      toast('Partida eliminada');
+    });
+
+    // ---------- Agregar refacción ----------
+    document.getElementById('formAdd').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const numParte = $numParte.value.trim();
+      const marca = $marca.value.trim();
+      const cantidad = Math.max(1, parseInt($cantidad.value, 10) || 1);
+      const precio = Math.max(0, parseFloat($precio.value) || 0);
+
+      if (!numParte && !marca) {
+        toast('Captura al menos número de parte o marca');
+        $numParte.focus();
+        return;
+      }
+
+      const cat = CATALOGO_INDEX.get(numParte.toUpperCase());
+      const descripcion = $numParte.dataset.desc || (cat ? cat.descripcion : '');
+
+      lineas.push({ id: uid(), numParte, marca, descripcion, cantidad, precio });
+      render();
+
+      // Reset del formulario para la siguiente
+      e.target.reset();
+      $cantidad.value = '1';
+      delete $numParte.dataset.desc;
+      $numParte.focus();
+      toast('Refacción agregada');
+    });
+
+    // ---------- Construir texto de la cotización ----------
+    function construirTexto() {
+      const fecha = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+      const lines = [];
+      lines.push('COTIZACIÓN — Refacciones Diésel HD');
+      lines.push(fecha);
+      lines.push('');
+      lineas.forEach((l, i) => {
+        const nombre = [l.marca, l.numParte].filter(Boolean).join(' ') || l.descripcion || 'Refacción';
+        const detalle = l.descripcion ? ` (${l.descripcion})` : '';
+        lines.push(`${i + 1}. ${nombre}${detalle}`);
+        lines.push(`   ${l.cantidad} x ${formatoUSD(l.precio)} = ${formatoUSD(subtotal(l))}`);
+      });
+      lines.push('');
+      lines.push(`TOTAL ESTIMADO: ${formatoUSD(totalGeneral())} USD`);
+      lines.push('');
+      lines.push('* Precios estimados y editables. No constituye factura.');
+      return lines.join('\n');
+    }
+
+    // ---------- Acciones ----------
+    document.getElementById('btnCopiar').addEventListener('click', async () => {
+      if (lineas.length === 0) { toast('No hay nada que copiar'); return; }
+      const texto = construirTexto();
+      try {
+        await navigator.clipboard.writeText(texto);
+        toast('Cotización copiada');
+      } catch {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = texto;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); toast('Cotización copiada'); }
+        catch { toast('No se pudo copiar'); }
+        document.body.removeChild(ta);
+      }
+    });
+
+    document.getElementById('btnEnviar').addEventListener('click', async () => {
+      if (lineas.length === 0) { toast('Agrega refacciones primero'); return; }
+      const texto = construirTexto();
+      // Web Share API (móvil): permite enviar por SMS, WhatsApp, etc.
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Cotización Diésel HD', text: texto });
+          return;
+        } catch (err) {
+          if (err && err.name === 'AbortError') return; // usuario canceló
+        }
+      }
+      // Fallback: abrir WhatsApp con el texto
+      window.open('https://wa.me/?text=' + encodeURIComponent(texto), '_blank');
+    });
+
+    document.getElementById('btnLimpiar').addEventListener('click', () => {
+      if (lineas.length === 0) return;
+      if (!confirm('¿Vaciar la cotización actual?')) return;
+      lineas = [];
+      render();
+      toast('Cotización vaciada');
+    });
+
+    document.getElementById('btnNueva').addEventListener('click', () => {
+      if (lineas.length > 0 && !confirm('¿Iniciar una nueva cotización? Se borrará la actual.')) return;
+      lineas = [];
+      document.getElementById('formAdd').reset();
+      $cantidad.value = '1';
+      delete $numParte.dataset.desc;
+      render();
+      $numParte.focus();
+      toast('Nueva cotización');
+    });
+
+    // ---------- Init ----------
+    render();
+  </script>
+</body>
+</html>

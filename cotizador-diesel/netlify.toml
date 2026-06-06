@@ -1,0 +1,7 @@
+# Despliegue del Cotizador Diésel HD como sitio Netlify independiente.
+# App estática autocontenida (un solo index.html), sin build.
+#
+# En Netlify: New site -> selecciona este repo -> Base directory: cotizador-diesel
+# Build command: (vacío)   Publish directory: cotizador-diesel
+[build]
+  publish = "."
