@@ -7,16 +7,33 @@ embebidos. Sin build, sin dependencias, sin backend.
 ## Qué hace
 
 - Captura por refacción: **número de parte, marca, cantidad y precio unitario (USD)**.
-- **Catálogo embebido** de refacciones HD comunes (Cummins, Detroit Diesel, Bosch,
-  Fleetguard, Donaldson, Bendix, Gates, Dayco, Wabco, Stemco): al escribir un número
-  de parte se autollenan marca, descripción y precio (todo editable).
+- **Catálogo embebido de ~160 refacciones HD reales** (Cummins, Detroit Diesel,
+  PACCAR, Caterpillar, Volvo/Mack, Bosch, Holset, Fleetguard, Donaldson, Baldwin,
+  WIX, Bendix, Haldex, Wabco, Meritor, Stemco, SKF, Hendrickson, Gabriel, Delco Remy,
+  Leece-Neville, Eaton Fuller, Spicer/Dana, Truck-Lite, Grote, Gates, Dayco…) con
+  números de parte y precios tomados de **listados públicos de tiendas en línea
+  (junio 2026)**. Al escribir un número de parte se autollenan marca, descripción y
+  precio (todo editable).
+- **Buscador** por número de parte, marca o descripción para agregar partidas rápido.
+- **Importa tu propia lista de precios (CSV)** para escalar a miles de partes con
+  precios exactos; tu catálogo se guarda en el dispositivo. Exporta el catálogo y
+  descarga una plantilla CSV.
 - Calcula **subtotal por partida** y **total estimado en USD** en vivo.
 - **Copiar** la cotización como texto o **enviarla** por WhatsApp / compartir del
   dispositivo (Web Share API en móvil).
 - La cotización en curso se guarda en `localStorage` (sobrevive al refresco);
   "Nueva cotización" la reinicia.
 
-> Los precios del catálogo son **estimados y editables**. La cotización no es factura.
+> Los precios del catálogo provienen de listados públicos y **varían por vendedor,
+> condición (nuevo/reman) y fecha**; son **estimados y editables**. La cotización no
+> es factura. Para precios exactos, importa tu lista en CSV.
+
+## Formato del CSV de importación
+
+Encabezados aceptados (en español o inglés, en cualquier orden):
+`numParte, marca, descripcion, categoria, precio` (también `partNumber/sku`,
+`brand`, `description`, `category`, `price`). Si el archivo no trae encabezados, se
+asume ese mismo orden de columnas. Usa el botón **"Plantilla CSV"** para un ejemplo.
 
 ## Uso local
 
